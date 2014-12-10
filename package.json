@@ -25,7 +25,7 @@
     "grunt-shell": "0.7.0",
     "load-grunt-tasks": "^0.6.0",
     "glob": "4.0.5"
-  }
+  },
   "author": "Auke ten Hoopen",
   "homepage": "https://github.com/ahoopen/mediacenter"
 }
