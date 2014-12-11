@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/ahoopen/mediacenter.git"
   },
+  "dependencies" : {
+    "node-sass": "1.2.3"
+  },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^1.0.0",
@@ -19,11 +22,11 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
     "express": "~4.9.0",
-    "node-sass": "1.1.4",
     "grunt-env": "0.4.1",
     "grunt-sass": "0.16.0",
     "grunt-shell": "0.7.0",
     "load-grunt-tasks": "^0.6.0",
+    "socket.io": "^1.2.0",
     "glob": "4.0.5"
   },
   "author": "Auke ten Hoopen",
