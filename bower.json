@@ -1,6 +1,10 @@
 {
+  "name" : "mediaplayer-vendor",
   "dependencies": {
     "backbone": "1.1.2",
+    "sass-list-maps": "git://github.com/lunelson/sass-list-maps.git#1.0.0",
+    "jquery": "~2.1.1",
+    "bourbon": "=4.0.2",
     "requirejs": "2.1.14"
   }
 }
