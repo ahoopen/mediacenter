@@ -1,0 +1,47 @@
+// Mixin: font-size
+// Get the associated font-size in rem from the Map
+//
+// @variable:
+//    $name [string|number]
+//      -> The Name from the ZIndex 'element' or a number value
+//    $type [string]
+//      -> The Element Type (default: default)
+//    $z [map]
+//      -> The associated data-map (default: $z-map)
+// ------
+// @usage:
+//     .block {
+//        @include font-size(modals);
+//     }
+// @result:
+//    .block {
+//      font-size: 40;
+//    }
+
+@mixin font-size($name, $type: text, $font-index: $font-size-map) {
+    $font-size-value: $name;
+    @if type-of($font-size-value) != "number" {
+        $font-size-value: get-font-size($name, $type, $font-index);
+    }
+
+    @if $font-size-value != null {
+        @include font-size-rem($font-size-value);
+    }
+}
+
+@function get-font-size($name, $type: text, $font-index: $font-size-map) {
+    // Check if 'type' is available
+    @if map-has-key($font-index, $type) {
+
+        // Check if 'name' is available
+        @if map-has-key(map-get($font-index, $type), $name) {
+            @return map-get(map-get($font-index, $type), $name);
+        } @else {
+            @warn 'There is not elements "#{$name}" in the font-size-map available.';
+        }
+    } @else {
+        @warn 'The desired Type "#{$type}" is not available. Please add it to the font-size-map or use a other one'
+    }
+
+    @return null;
+}

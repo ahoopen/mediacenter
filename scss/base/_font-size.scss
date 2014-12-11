@@ -1,0 +1,33 @@
+//
+// Font-size map
+//
+
+$paragraph: 16;
+$h1: 54;
+$h2: 36;
+$h3: 32;
+$h4: 28;
+$h5: 20;
+$h6: $paragraph;
+
+
+$font-size-map: (
+    text: (
+        paragraph: $paragraph,
+        h1: $h1,
+        h2: $h2,
+        h3: $h3,
+        h4: $h4,
+        h5: $h5,
+        h6: $h6
+    ),
+    subText: (
+        paragraph: $paragraph - 2,
+        h1: $h1 - 2,
+        h2: $h2 - 2,
+        h3: $h3 - 2,
+        h4: $h4 - 2,
+        h5: $h5 - 2,
+        h6: $h6 - 2,
+    )
+);

@@ -1,0 +1,29 @@
+$paddings: (5px, 10px, 15px, 20px, 25px, 30px);
+
+@each $padding in $paddings {
+    $padding-type: strip-unit($padding);
+
+    .p--#{$padding-type},
+    .ph--#{$padding-type},
+    .pl--#{$padding-type} {
+        @include px-to-rem(padding-left, $padding);
+    }
+
+    .p--#{$padding-type},
+    .ph--#{$padding-type},
+    .pr--#{$padding-type} {
+        @include px-to-rem(padding-right, $padding);
+    }
+
+    .p--#{$padding-type},
+    .pv--#{$padding-type},
+    .pt--#{$padding-type} {
+        @include px-to-rem(padding-top, $padding);
+    }
+
+    .p--#{$padding-type},
+    .pv--#{$padding-type},
+    .pb--#{$padding-type} {
+        @include px-to-rem(padding-bottom, $padding);
+    }
+}
