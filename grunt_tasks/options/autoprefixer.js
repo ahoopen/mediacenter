@@ -6,7 +6,7 @@ module.exports = {
 
     },
     single_file : {
-        src : 'release/easydelivery.css',
-        dest : 'release/easydelivery.css'
+        src : 'target/css/mediacenter.css',
+        dest : 'target/css/mediacenter.css'
     }
 };

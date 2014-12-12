@@ -7,9 +7,9 @@ module.exports = {
 
     minify: {
         expand: true,
-        cwd: 'release/',
-        src: ['easydelivery.css', '!*.min.css'],
-        dest: 'release/css',
+        cwd: 'target/',
+        src: ['mediaplayer.css', '!*.min.css'],
+        dest: 'target/css',
         ext: '.min.css'
     }
 };

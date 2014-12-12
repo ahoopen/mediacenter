@@ -4,9 +4,7 @@ module.exports = {
             dot: true,
             src: [
                 '.tmp',
-                'release/*',
-                'public/css/*',
-                '!release/.git*'
+                'target/*',
             ]
         }]
     }

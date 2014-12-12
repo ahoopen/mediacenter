@@ -27,5 +27,5 @@ node_modules
 
 /.sass-cache/
 /dist
-client/vendor
+client/bower_components
 target

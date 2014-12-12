@@ -1,10 +1,19 @@
 {
-  "name" : "mediaplayer-vendor",
-  "dependencies": {
-    "backbone": "1.1.2",
-    "sass-list-maps": "git://github.com/lunelson/sass-list-maps.git#1.0.0",
-    "jquery": "~2.1.1",
-    "bourbon": "=4.0.2",
-    "requirejs": "2.1.14"
-  }
+    "name": "mediaplayer-vendor",
+    "dependencies": {
+        "backbone": "1.1.2",
+        "sass-list-maps": "git://github.com/lunelson/sass-list-maps.git#1.0.0",
+        "jquery": "~2.1.1",
+        "bourbon": "=4.0.2",
+        "lodash": "=2.4.1",
+        "es5-shim": "=4.0.3",
+        "promise": "git://github.com/taylorhakes/promise-polyfill.git#1.1.4",
+        "dustjs-linkedin": "=2.4.2",
+        "dustjs-linkedin-amd": "git://github.com/ahwswebdev/dustjs-linkedin-amd.git#0.0.1",
+        "dustjs-linkedin-helpers": "=1.2.0",
+        "requirejs-dust": "=0.0.1",
+        "requirejs-text": "=2.0.10",
+        "requirejs-plugins ": "=1.0.2",
+        "requirejs": "2.1.14"
+    }
 }

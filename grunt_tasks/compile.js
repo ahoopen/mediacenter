@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
     grunt.registerTask('compile', 'Build project', [
-        'browserify',
+        'requirejs',
         'sass',
         'autoprefixer'
     ]);
