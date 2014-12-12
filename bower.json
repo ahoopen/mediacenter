@@ -2,6 +2,7 @@
     "name": "mediaplayer-vendor",
     "dependencies": {
         "backbone": "1.1.2",
+        "backbone-patterns": "git://github.com/rickekelschot/backbone-patterns.git#0.1.7",
         "sass-list-maps": "git://github.com/lunelson/sass-list-maps.git#1.0.0",
         "jquery": "~2.1.1",
         "bourbon": "=4.0.2",

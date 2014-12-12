@@ -6,6 +6,7 @@ var express = require('express'),
 var app = express();
 
 // routes
+app.use('/', express.static(__dirname + '/client'));
 app.use('/', routes);
 
 app.use(function (req, res, next) {

@@ -5,11 +5,11 @@ module.exports = {
     },
     sass : {
         files : 'scss/**/*.scss',
-        tasks : ['sass', 'autoprefixer', 'copy:css']
+        tasks : ['sass', 'autoprefixer']
     },
 
     js : {
-        files : 'public/javascript/**/*.js',
-        tasks : ['jshint']
+        files : 'client/js/**/*.js',
+        tasks : ['jshint', 'requirejs']
     }
 };

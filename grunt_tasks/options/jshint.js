@@ -8,6 +8,6 @@ module.exports = {
                 jQuery: true
             }
         },
-        src: ['public/javascript/**/*.js']
+        src: ['client/js/**/*.js']
     }
 };
