@@ -10,6 +10,10 @@ router.get('/', function (request, response) {
 
 router.get('/player', function (request, response) {
     omx.play('/media/usb/New\\ girl\\ s03e01.mkv');
+    omx.on('play', function(video) {
+        response.send('video is playing!', video);
+        response.end();
+    })
 });
 
 module.exports = router;
