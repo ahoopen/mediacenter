@@ -12,7 +12,10 @@ module.exports = {
             include: [
                 'dst',
                 'dust',
-                'text'
+                'text',
+                'async',
+                'goog',
+                'noext'
             ],
             out: 'target/js/mediacenter.min.js'
         }
