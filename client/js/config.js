@@ -2,13 +2,15 @@
 
 requirejs.config({
 
-    baseUrl: '/client/js',
+    baseUrl: '/js',
 
     paths: {
 
         'raspberry-pi-mediacenterjs': 'mediacenter/module',
+        'home' : 'mediacenter/home/module',
 
         'backbone': '../bower_components/backbone/backbone',
+        'backbone-patterns': '../bower_components/backbone-patterns/dist/backbone-patterns',
         'underscore': '../bower_components/lodash/dist/lodash.compat',
         'text': '../bower_components/requirejs-text/text',
 
@@ -21,7 +23,13 @@ requirejs.config({
 
         'es5-shim': '../bower_components/es5-shim/es5-shim',
         'promise': '../bower_components/promise/Promise',
-        'dustjs-linkedin-helpers': '../bower_components/dustjs-linkedin-helpers/dist/dust-helpers'
+        'dustjs-linkedin-helpers': '../bower_components/dustjs-linkedin-helpers/dist/dust-helpers',
+
+        /* Requirejs plugins */
+        'async': '../bower_components/requirejs-plugins/src/async',
+        'goog': '../bower_components/requirejs-plugins/src/goog',
+        'noext': '../bower_components/requirejs-plugins/src/noext',
+        'propertyParser': '../bower_components/requirejs-plugins/src/propertyParser'
     },
 
     shim: {
@@ -33,6 +41,10 @@ requirejs.config({
         'backbone': {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
+        },
+
+        'backbone-patterns': {
+            deps: ['backbone']
         },
 
         /* Dust */
@@ -53,15 +65,13 @@ requirejs.config({
         },
 
         'raspberry-pi-mediacenterjs': {
-            deps: ['backbone', 'backbone-patterns', 'es5-shim', 'jquery']
+            deps: ['backbone', 'backbone-patterns','es5-shim', 'jquery']
         }
     }
 });
 
-require(['raspberry-pi-mediacenterjs'], function() {
-   'use strict';
+require(['raspberry-pi-mediacenterjs'], function () {
+    'use strict';
 
-    return {
-
-    };
+    return {};
 });
