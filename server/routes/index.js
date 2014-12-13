@@ -1,3 +1,5 @@
+/* globals require */
+
 var express = require('express');
 var router = express.Router();
 var omx = require('omx-manager');
@@ -9,9 +11,10 @@ router.get('/', function (request, response) {
 });
 
 router.get('/player', function (request, response) {
-    omx.play('/media/usb/New\\ girl\\ s03e01.mkv');
+    omx.play('/media/usb/newgirl.mkv');
+    var status = omx.getStatus();
     omx.on('play', function(video) {
-        response.send('video is playing!', video);
+        response.send('video is playing!', video,status);
         response.end();
     })
 });
