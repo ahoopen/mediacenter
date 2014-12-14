@@ -10,13 +10,9 @@ router.get('/', function (request, response) {
     //response.end();
 });
 
-router.get('/player', function (request, response) {
-    omx.play('/media/usb/newgirl.mkv');
-    var status = omx.getStatus();
-    omx.on('play', function(video) {
-        response.send('video is playing!', video,status);
-        response.end();
-    })
+router.get('/remote', function (request, response) {
+    console.log('remote');
+    response.render('remote.html');
 });
 
 module.exports = router;

@@ -1,13 +1,26 @@
+/* globals require, module */
+
 var express = require('express'),
     http = require('http'),
+    path = require('path'),
     routes = require('./server/routes/index');
 
 
 var app = express();
+app.use(express.static(path.join(__dirname, 'target')));
+app.set('views', __dirname + '/client');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
 
 // routes
-app.use('/', express.static(__dirname + '/client'));
 app.use('/', routes);
+//app.use('/remote', function () {
+//    '/remote', function (request, response) {
+//        console.log('remote');
+//        response.render( __dirname + '/client/remote.html');
+//    });
+//});
+
 
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
@@ -24,9 +37,3 @@ server.listen(port, function() {
 });
 
 module.exports = app;
-
-//var http = require('http');
-//http.createServer(function (req, res) {
-//    res.writeHead(200, {'Content-Type': 'text/plain'});
-//    res.end('Hello? Yes, this is Pi!\n');
-//}).listen(1337);

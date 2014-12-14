@@ -8,6 +8,7 @@
         "url": "https://github.com/ahoopen/mediacenter.git"
     },
     "dependencies": {
+        "ejs": "^1.0.0",
         "node-sass": "1.2.3"
     },
     "devDependencies": {
@@ -31,6 +32,7 @@
         "socket.io": "^1.2.0",
         "async": "^0.9.0",
         "omx-manager": "0.0.3",
+        "ejs": "^1.0.0",
         "glob": "4.0.5"
     },
     "author": "Auke ten Hoopen",

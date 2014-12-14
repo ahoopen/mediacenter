@@ -2,17 +2,6 @@ html {
     -webkit-font-smoothing: antialiased;
 }
 
-#map {
-    height: 100%;
-    width: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-}
-
-.screen--panel {
-    position: absolute;
-    z-index: 20;
-    width: 100%;
-    margin-left: 0 !important;
+body {
+    margin: 0;
 }

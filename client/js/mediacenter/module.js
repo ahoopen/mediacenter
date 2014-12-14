@@ -15,5 +15,5 @@ define('raspberry-pi-mediacenterjs', [
     var Router = require('mediacenter/router'),
         router;
 
-    router = new Router('/');
+    //router = new Router('/');
 });

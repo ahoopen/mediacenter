@@ -1,0 +1,136 @@
+
+.navigation__bar {
+    height: 100px;
+    background-color: #090804;
+    width: 100%;
+    padding-top: 30px;
+    text-align: center;
+    color: #B6A472;
+    @include font-size(38);
+    border-bottom: 2px solid #2D2D2D;
+}
+
+.media__info {
+    width: 100%;
+
+    .media__info-title {
+        @include font-size(56);
+        color: #efefef;
+        padding-top: 70px;
+        text-align: center;
+    }
+
+    .media__info-season {
+        @include font-size(40);
+        color: #efefef;
+        font-style: italic;
+        text-align: center;
+    }
+}
+
+.remote__controller {
+    background-color: $color-brown--1;
+    width: 100%;
+}
+
+.remote__options {
+    display: block;
+    color: #ad9865;
+    padding-top: 90px;
+    text-align: center;
+    @include font-size(38);
+}
+
+.remote__container {
+    width: 70%;
+    margin: 0 auto;
+    height: 100%;
+    padding-top: 150px;
+
+    .remote__text {
+        text-align: center;
+        padding-top: 40%;
+        @include font-size(30);
+        color: $color-yellow--1;
+    }
+
+    .remote__loader {
+        position: relative;
+        width: 700px;
+        height: 700px;
+        margin: auto;
+        user-select: none;
+        box-sizing: border-box;
+    }
+
+    .remote__loader-bg {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 10px solid rgba(255, 255, 255, 0.1);
+        box-sizing: border-box;
+    }
+
+    .remote__spiner-one {
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        width: 50%;
+        height: 50%;
+        background: transparent;
+        box-sizing: border-box;
+    }
+
+    .remote__spiner-two {
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        box-sizing: border-box;
+    }
+
+    .remote__spiner {
+        width: 200%;
+        height: 200%;
+        border-radius: 50%;
+        border: 10px solid  #ad9865;
+        box-sizing: border-box;
+    }
+
+    .animate-0-25-a {
+        transform: rotate(90deg);
+        transform-origin: 100% 100%;
+    }
+    .animate-0-25-b {
+        transform: rotate(-90deg);
+        transform-origin: 100% 100%;
+    }
+    .animate-25-50-a {
+        transform: rotate(180deg);
+        transform-origin: 100% 100%;
+    }
+    .animate-25-50-b {
+        transform: rotate(-90deg);
+        transform-origin: 100% 100%;
+    }
+    .animate-50-75-a {
+        transform: rotate(270deg);
+        transform-origin: 100% 100%;
+    }
+    .animate-50-75-b {
+        transform: rotate(-90deg);
+        transform-origin: 100% 100%;
+    }
+    .animate-75-100-a {
+        transform: rotate(0deg);
+        transform-origin: 100% 100%;
+    }
+    .animate-75-100-b {
+        transform: rotate(-90deg);
+        transform-origin: 100% 100%;
+    }
+}
