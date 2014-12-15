@@ -1,9 +1,28 @@
 <head>
     <script type="text/javascript" src="js/mediacenter.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link type="text/css" rel="stylesheet" href="css/mediacenter.css">
     <script type="text/javascript">
+
+        var socket = io.connect('http://localhost:1337');
+
+        $(document).ready( function() {
+
+            $('.remote__control-action').click( function() {
+                if( this.hasClass('icon-pause') ) {
+                    this.removeClass('icon-pause');
+                    this.addClass('icon-play');
+                } else {
+                    this.removeClass('icon-play');
+                    this.addClass('icon-pause');
+                }
+                socket.emit('remote:pause');
+            });
+        });
+
+        socket.emit('remote:start', 'video.mp4');
 
         function renderProgress(progress) {
             progress = Math.floor(progress);
@@ -56,7 +75,7 @@
             <div class="remote__loader-bg">
                 <div class="remote__text">
                     <!--<div class="icon-play icon-3x"></div>-->
-                    <div class="icon-pause icon-4x"></div>
+                    <div class="icon-pause remote__control-action icon-4x">&nbsp;</div>
                 </div>
             </div>
             <div class="remote__spiner-one animate-0-25-a">

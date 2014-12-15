@@ -3,7 +3,8 @@
 var express = require('express'),
     http = require('http'),
     path = require('path'),
-    routes = require('./server/routes/index');
+    routes = require('./server/routes/index'),
+    remoteControle = require('./server/controllers/player');
 
 
 var app = express();
@@ -35,5 +36,7 @@ var io = require('socket.io').listen(server);
 server.listen(port, function() {
     console.log("Listening on " + port);
 });
+
+remoteControle.init(io);
 
 module.exports = app;
