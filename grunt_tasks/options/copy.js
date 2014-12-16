@@ -1,10 +1,10 @@
 /*globals module*/
 module.exports = {
 
-    css: {
+    vendor: {
         expand : true,
-        cwd : 'release',
-        src: ['**.css'],
-        dest: 'public/css/'
+        cwd : 'client/bower_components/requirejs/',
+        src: ['require.js'],
+        dest: 'target/vendor'
     }
 };

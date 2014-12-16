@@ -6,14 +6,10 @@ define('raspberry-pi-mediacenterjs', [
     'underscore',
     'backbone',
 
-    'mediacenter/router',
     'mediacenter/player/module'
 
 ], function () {
     'use strict';
 
-    var Router = require('mediacenter/router'),
-        router;
-
-    //router = new Router('/');
+    return null;
 });

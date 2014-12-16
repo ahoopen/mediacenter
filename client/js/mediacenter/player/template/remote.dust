@@ -1,0 +1,37 @@
+<div class="media__info">
+    <div class="media__info-title">Game of Thrones - Valar Dohaeris</div>
+    <div class="media__info-season">Season 3 episode 1</div>
+</div>
+<div class="remote__container">
+    <div class="remote__loader">
+        <div class="remote__loader-bg">
+            <div class="remote__text">
+                <!--<div class="icon-play icon-3x"></div>-->
+                <div class="remote__control-pause icon-pause icon-4x"></div>
+            </div>
+        </div>
+        <div class="remote__spiner-one animate-0-25-a">
+            <div class="remote__spiner-two animate-0-25-b">
+                <div class="remote__spiner"></div>
+            </div>
+        </div>
+        <div class="remote__spiner-one animate-25-50-a">
+            <div class="remote__spiner-two animate-25-50-b">
+                <div class="remote__spiner"></div>
+            </div>
+        </div>
+        <div class="remote__spiner-one animate-50-75-a">
+            <div class="remote__spiner-two animate-50-75-b">
+                <div class="remote__spiner"></div>
+            </div>
+        </div>
+        <div class="remote__spiner-one animate-75-100-a">
+            <div class="remote__spiner-two animate-75-100-b">
+                <div class="remote__spiner"></div>
+            </div>
+        </div>
+    </div>
+    <div class="remote__options">
+        <div class="icon-plus icon-2x"></div>
+    </div>
+</div>

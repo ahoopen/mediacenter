@@ -52,6 +52,11 @@
         padding-top: 40%;
         @include font-size(30);
         color: $color-yellow--1;
+        position: relative;
+    }
+    
+    .remote__controller-action {
+        position: relative;
     }
 
     .remote__loader {

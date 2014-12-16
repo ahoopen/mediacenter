@@ -1,24 +1,32 @@
 /* globals Backbone, define, require */
 
 define([
-    'dst!mediacenter/player/template/player.dust'
+    'dst!mediacenter/player/template/remote.dust',
+
 ], function () {
 
     'use strict';
 
+    //var socket = io.connect(window.location.hostname);
+
     return Backbone.View.extend({
 
-        template: require('dst!mediacenter/player/template/player.dust'),
+        template: require('dst!mediacenter/player/template/remote.dust'),
 
         events: {
-            'click player__start': 'start',
-            'click player__pause': 'pause'
+            //'click remote__control-start': 'start',
+            'click remote__control-pause': 'pause'
         },
 
         initialize: function () {
+            console.log('remote control');
             Backbone.View.prototype.initialize.apply(this, arguments);
             this.on('render-complete', this.onRenderComplete, this);
             this.render();
+        },
+
+        getTemplateData: function () {
+            return {};
         },
 
         start: function () {
@@ -26,7 +34,7 @@ define([
         },
 
         pause: function () {
-            console.log('pause');
+            //socket.emit('remote:pause');
         },
 
         onRenderComplete: function () {
