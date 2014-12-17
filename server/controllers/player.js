@@ -18,7 +18,7 @@ module.exports = {
                 console.log('play video');
                 omx.play(['/media/usb/newgirl.mkv'], {
                     '-o' : 'hdmi',
-                    '-t' : true
+                    '--t' : 'on'
                 });
 
                 //setInterval( getDuration('/media/usb/newgirl.mkv', function(time) {
