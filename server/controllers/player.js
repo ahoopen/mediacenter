@@ -13,7 +13,10 @@ module.exports = {
 
             socket.on('remote:start', function () {
                 console.log('play video');
-                omx.play(['/media/usb/newgirl.mkv']);
+                omx.play(['/media/usb/newgirl.mkv'], {
+                    '-o' : 'hdmi',
+                    '-t' : 'on'
+                });
             });
 
             socket.on('remote:stop', function() {
