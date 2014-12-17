@@ -21,9 +21,9 @@ module.exports = {
                     '-t' : true
                 });
 
-                setInterval( getDuration('/media/usb/newgirl.mkv', function(time) {
-                    console.log(time);
-                }), 1000);
+                //setInterval( getDuration('/media/usb/newgirl.mkv', function(time) {
+                //    console.log(time);
+                //}), 1000);
             });
 
             socket.on('remote:stop', function() {
