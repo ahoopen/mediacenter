@@ -8,13 +8,12 @@ module.exports = {
         io.sockets.on('connection', function (socket) {
 
             socket.on('remote:pause', function () {
-                console.log('pause');
                 omx.pause();
             });
 
-            socket.on('remote:start', function (video) {
-                console.log('start');
-                omx.play('/media/usb/newgirl.mkv');
+            socket.on('remote:start', function () {
+                console.log('play video');
+                omx.play(['/media/usb/newgirl.mkv']);
             });
 
             socket.on('remote:stop', function() {
