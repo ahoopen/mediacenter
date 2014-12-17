@@ -17,13 +17,14 @@ module.exports = {
             socket.on('remote:start', function () {
                 console.log('play video');
                 omx.play(['/media/usb/newgirl.mkv'], {
-                    '-t' : 'on',
+                    //'-t' : 'on',
                     '-o' : 'hdmi'
                 });
 
                 omx.on('play', function(video) {
                     var status = omx.getStatus();
-                   console.log(status);
+                    console.log(status);
+                    omx.toggleSubtitles();
                 });
                 //setInterval( getDuration('/media/usb/newgirl.mkv', function(time) {
                 //    console.log(time);
