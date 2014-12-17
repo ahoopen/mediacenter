@@ -17,7 +17,7 @@ module.exports = {
             socket.on('remote:start', function () {
                 console.log('play video');
                 omx.play(['/media/usb/newgirl.mkv'], {
-                    //'-t' : 'on',
+                    '-t' : 'on',
                     '-o' : 'hdmi'
                 });
 
