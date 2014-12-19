@@ -33,7 +33,9 @@
         "async": "^0.9.0",
         "omx-manager": "0.0.3",
         "ejs": "^1.0.0",
-        "glob": "4.0.5"
+        "glob": "4.0.5",
+        "fluent-ffmpeg": "git://github.com/fluent-ffmpeg/node-fluent-ffmpeg#327a6f907e4511251e0803ef5aefef616d81f5c4",
+        "episoder" : "0.1.5"
     },
     "author": "Auke ten Hoopen",
     "homepage": "https://github.com/ahoopen/mediacenter"
