@@ -27,7 +27,7 @@ module.exports = {
              */
             socket.on('remote:start', function (video) {
                 PlayerService.info( function(player) {
-                    if( player.status == null ) {
+                    if( player.status === 'stop' ) {
                         console.log('play video');
                         omx.play(['/media/usb/newgirl.mkv'], {
                             '-t': 'on',
