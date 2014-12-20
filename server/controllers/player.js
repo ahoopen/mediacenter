@@ -44,6 +44,7 @@ module.exports = {
 
                     setInterval( function() {
                         var status = omx.getStatus();
+                        console.log('status:: ', status);
                         if( status.loaded ) {
                             socket.emit('progress', PlayerService.getPlayingProgress() );
                             socket.emit('duration', PlayerService.getFormattedDuration() );

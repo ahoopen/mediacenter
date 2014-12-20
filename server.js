@@ -10,8 +10,8 @@ var express = require('express'),
     mongoose = require('mongoose');
 
 var connect = function () {
-    var options = {server: {socketOptions: {keepAlive: 1}}};
-    mongoose.connect(config.database.db, options);
+    //var options = {server: {socketOptions: {keepAlive: 1}}};
+    mongoose.connect(config.database.db);
 };
 connect();
 

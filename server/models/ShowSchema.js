@@ -8,6 +8,7 @@ var EpisodeSchema = new Schema( {
     title 	: { type : String, required : true, index : true },
     season 	: { type : Number, required : true, index : true },
     number 	: { type : Number, required : true, index : true },
+    duration : { type : Number, required : true },
     summary : { type : String },
     screen	: { type : String },
     location : { type : String }
