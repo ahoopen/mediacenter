@@ -43,8 +43,11 @@ module.exports = {
                     this.running = true;
 
                     setInterval( function() {
-                        socket.emit('progress', PlayerService.getPlayingProgress() );
-                        socket.emit('duration', PlayerService.getFormattedDuration() );
+                        var status = omx.getStatus();
+                        if( status.loaded ) {
+                            socket.emit('progress', PlayerService.getPlayingProgress() );
+                            socket.emit('duration', PlayerService.getFormattedDuration() );
+                        }
                     }, 1000);
                 }
             });

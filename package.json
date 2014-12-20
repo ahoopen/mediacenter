@@ -31,6 +31,7 @@
         "load-grunt-tasks": "^0.6.0",
         "socket.io": "^1.2.0",
         "async": "^0.9.0",
+        "mongoose": "^3.8.11",
         "omx-manager": "0.0.3",
         "moment" : "2.8.4",
         "ejs": "^1.0.0",
