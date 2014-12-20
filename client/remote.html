@@ -29,9 +29,7 @@
         });
 
         socket.on('duration', function(duration) {
-            var playTime = moment(duration);
-            var time = playTime.hours() + ":" + playTime.minutes() + ":" + playTime.seconds();
-            $('.media__info-season').html(time);
+           $('.media__info-season').html(duration);
         });
 
         socket.on('progress', function(duration) {

@@ -44,6 +44,7 @@ module.exports = {
 
                     setInterval( function() {
                         socket.emit('progress', PlayerService.getPlayingProgress() );
+                        socket.emit('duration', PlayerService.getFormattedDuration() );
                     }, 1000);
                 }
             });

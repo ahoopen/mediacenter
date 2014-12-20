@@ -70,7 +70,10 @@ module.exports = {
         console.log("duration: " + this.getFormattedDuration(this.player.duration));
     },
 
-    getFormattedDuration: function (duration) {
+    getFormattedDuration: function () {
+        this.updateDuration();
+        var duration = this.player.duration;
+
         return duration.hours() + ":" + duration.minutes() + ":" + duration.seconds();
     },
 
@@ -89,7 +92,7 @@ module.exports = {
     getPlayingProgress : function() {
         if( this.player.total != null ) {
             this.updateDuration();
-            return Math.round( (this.player.duration.asSeconds() / this.player.total) * 100);
+            return Math.round( (this.player.duration.asSeconds() / this.player.total) * 100).toFixed(0);
         }
         return 0;
     },
