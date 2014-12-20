@@ -81,7 +81,6 @@ module.exports = {
             if (err) {
                 throw err;
             }
-            console.log( Math.round(metadata.format.duration) );
             self.player.total = Math.round(metadata.format.duration);
         });
 
@@ -90,7 +89,6 @@ module.exports = {
     getPlayingProgress : function() {
         if( this.player.total != null ) {
             this.updateDuration();
-            console.log( this.player.duration.asSeconds() );
             return Math.round( (this.player.duration.asSeconds() / this.player.total) * 100);
         }
         return 0;

@@ -20,28 +20,25 @@ module.exports = {
 
             socket.on('remote:pause', function () {
                 omx.pause();
-                //console.log('pause!!');
-                //PlayerService.onPause();
             });
 
             /**
              *
              */
             socket.on('remote:start', function (video) {
-                console.log('play video');
-                omx.play(['/media/usb/newgirl.mkv'], {
-                    '-t': 'on',
-                    '-o': 'hdmi'
+                PlayerService.info( function(player) {
+                    if( player.status == null ) {
+                        console.log('play video');
+                        omx.play(['/media/usb/newgirl.mkv'], {
+                            '-t': 'on',
+                            '-o': 'hdmi'
+                        });
+                    } else {
+                        console.log('resume!!');
+                        PlayerService.onResume();
+                    }
                 });
-                //PlayerService.info( function(player) {
-                //    if( player.status == null ) {
-                //        PlayerService.onPlay();
-                //    } else {
-                //        console.log('resume!!');
-                //        PlayerService.onResume();
-                //    }
-                //});
-                //
+
                 if( ! this.running ) {
                     this.running = true;
 
@@ -53,7 +50,6 @@ module.exports = {
 
             socket.on('remote:stop', function () {
                 omx.stop();
-                //PlayerService.onStop();
             });
         });
     },
