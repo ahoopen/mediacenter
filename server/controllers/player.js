@@ -1,57 +1,93 @@
 /* globals module, require */
-var omx = require('omx-manager');
+var omx = require('omx-manager'),
+    PlayerService = require('../services/PlayerService');
 
-var child_process = require('child_process');
-var exec = child_process.exec;
+var child_process = require('child_process'),
+    exec = child_process.exec;
 
 module.exports = {
 
+    subtitles: false,
+
     init: function (io) {
+
+        this.assignListeners();
 
         io.sockets.on('connection', function (socket) {
 
             socket.on('remote:pause', function () {
                 omx.pause();
+                //console.log('pause!!');
+                //PlayerService.onPause();
             });
 
-            socket.on('remote:start', function () {
+            /**
+             *
+             */
+            socket.on('remote:start', function (video) {
                 console.log('play video');
                 omx.play(['/media/usb/newgirl.mkv'], {
-                    '-t' : 'on',
-                    '-o' : 'hdmi'
+                    '-t': 'on',
+                    '-o': 'hdmi'
                 });
-
-                omx.on('play', function(video) {
-                    var status = omx.getStatus();
-                    console.log(status);
-                    omx.toggleSubtitles();
-                });
-                //setInterval( getDuration('/media/usb/newgirl.mkv', function(time) {
-                //    console.log(time);
-                //}), 1000);
+                //PlayerService.info( function(player) {
+                //    if( player.status == null ) {
+                //        PlayerService.onPlay();
+                //    } else {
+                //        console.log('resume!!');
+                //        PlayerService.onResume();
+                //    }
+                //});
+                //
+                //setInterval( function() {
+                //    PlayerService.info( function(player) {
+                //        socket.emit('duration', player.duration );
+                //    });
+                //}, 1000);
             });
 
-            socket.on('remote:stop', function() {
+            socket.on('remote:stop', function () {
                 omx.stop();
+                //PlayerService.onStop();
             });
         });
-    }
-};
+    },
 
-var getDuration = function(video, callback) {
-    exec('omxplayer --info ' + video, function (err, stdout, stderr) {
-        if (!err) {
-            var duration = /(Duration:\s)([\d.:]+)/g.exec(stderr);
-            if (duration) {
-                var durationArray = duration[2].split(':');
-                var seconds = Math.ceil(durationArray[0]) * 60 * 60 + Math.ceil(+durationArray[1]) * 60 + Math.ceil(+durationArray[2]);
-                callback(seconds);
-            } else {
-                // couldn't find duration for some reason
-                callback(null);
+    assignListeners: function () {
+        this.onStart();
+        this.onPause();
+        this.onStop();
+        this.onEnd();
+    },
+
+    onStart: function () {
+        omx.on('play', function () {
+            console.log('omx:play event');
+            if (!this.subtitles) {
+                omx.toggleSubtitles();
             }
-        } else {
-            callback(null);
-        }
-    });
+            PlayerService.onPlay();
+        });
+    },
+
+    onPause: function () {
+        omx.on('pause', function () {
+            console.log('omx:pause event');
+            PlayerService.onPause();
+        })
+    },
+
+    onStop: function () {
+        omx.on('stop', function () {
+            console.log('omx:stop event');
+            PlayerService.onStop();
+        });
+    },
+
+    onEnd: function () {
+        omx.on('end', function () {
+            console.log('omx:end event');
+            PlayerService.onStop();
+        });
+    }
 };

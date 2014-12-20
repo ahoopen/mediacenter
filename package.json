@@ -32,6 +32,7 @@
         "socket.io": "^1.2.0",
         "async": "^0.9.0",
         "omx-manager": "0.0.3",
+        "moment" : "2.8.4",
         "ejs": "^1.0.0",
         "glob": "4.0.5",
         "fluent-ffmpeg": "git://github.com/fluent-ffmpeg/node-fluent-ffmpeg#327a6f907e4511251e0803ef5aefef616d81f5c4",
