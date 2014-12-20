@@ -8,10 +8,13 @@ var child_process = require('child_process'),
 module.exports = {
 
     subtitles: false,
+    running : false,
 
     init: function (io) {
 
         this.assignListeners();
+
+        PlayerService.getTotalDuration('/media/usb/newgirl.mkv');
 
         io.sockets.on('connection', function (socket) {
 
@@ -39,11 +42,13 @@ module.exports = {
                 //    }
                 //});
                 //
-                //setInterval( function() {
-                //    PlayerService.info( function(player) {
-                //        socket.emit('duration', player.duration );
-                //    });
-                //}, 1000);
+                if( ! this.running ) {
+                    this.running = true;
+
+                    setInterval( function() {
+                        socket.emit('progress', PlayerService.getPlayingProgress() );
+                    }, 1000);
+                }
             });
 
             socket.on('remote:stop', function () {
@@ -65,6 +70,7 @@ module.exports = {
             console.log('omx:play event');
             if (!this.subtitles) {
                 omx.toggleSubtitles();
+                this.subtitles = true;
             }
             PlayerService.onPlay();
         });

@@ -33,6 +33,10 @@
             var time = playTime.hours() + ":" + playTime.minutes() + ":" + playTime.seconds();
             $('.media__info-season').html(time);
         });
+
+        socket.on('progress', function(duration) {
+            renderProgress(duration);
+        });
 //        socket.emit('remote:start', 'video.mp4');
 
         function renderProgress(progress) {
@@ -57,19 +61,8 @@
                     .css("transform", "rotate(0deg)");
                 $(".animate-75-100-b").css("transform", "rotate(" + angle + "deg)");
             }
-            //$(".remote__text").html(progress + "%");
         }
 
-
-        var loading = 0;
-        var initLoading = function () {
-            if (loading < 100) {
-                loading++;
-                renderProgress(loading);
-            }
-        };
-
-        setInterval(initLoading, 1000);
     </script>
 </head>
 <body>

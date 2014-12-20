@@ -1,13 +1,15 @@
 /* module, require */
 
-var moment = require('moment');
+var moment = require('moment'),
+    Ffmpeg = require('fluent-ffmpeg');
 
 module.exports = {
 
     player: {
         status: 'stop',
         start: null,
-        duration: moment.duration(0)
+        duration: moment.duration(0),
+        total: null
     },
 
     onPlay: function () {
@@ -72,8 +74,23 @@ module.exports = {
         return duration.hours() + ":" + duration.minutes() + ":" + duration.seconds();
     },
 
-    getTotalDuration: function () {
+    getTotalDuration: function (file) {
+        var self = this;
 
+        Ffmpeg.ffprobe(file, function (err, metadata) {
+            if (err) {
+                throw err;
+            }
+            self.total = Math.round(metadata.format.duration);
+        });
+
+    },
+
+    getPlayingProgress : function() {
+        if( this.player.total != null ) {
+            return Math.round( (this.player.duration / this.player.total) * 100);
+        }
+        return 0;
     },
 
     updateDuration: function () {

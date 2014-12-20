@@ -10,16 +10,16 @@ var omx = require('omx-manager'),
 //});
 
 
-exports.ffprobe = function (filePath, callback) {
-    filePath = Path.normalize(filePath);
-    fs.exists(filePath, function (exists) {
-        if (exists) {
-            Ffmpeg.ffprobe(file.path, callback);
-        } else {
-            callback("File not found")
-        }
-    });
-};
+//exports.ffprobe = function (filePath, callback) {
+//    filePath = Path.normalize(filePath);
+//    fs.exists(filePath, function (exists) {
+//        if (exists) {
+//            Ffmpeg.ffprobe(file.path, callback);
+//        } else {
+//            callback("File not found")
+//        }
+//    });
+//};
 
 var metadata = function (file) {
     Ffmpeg.ffprobe(file, function (err, metadata) {
