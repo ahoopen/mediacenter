@@ -89,7 +89,7 @@ module.exports = {
 
     getPlayingProgress : function() {
         if( this.player.total != null ) {
-            return Math.round( (this.player.duration / this.player.total) * 100);
+            return Math.round( (this.player.duration.seconds() / this.player.total) * 100);
         }
         return 0;
     },
