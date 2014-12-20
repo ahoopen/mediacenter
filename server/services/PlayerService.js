@@ -81,6 +81,7 @@ module.exports = {
             if (err) {
                 throw err;
             }
+            console.log( Math.round(metadata.format.duration) );
             self.total = Math.round(metadata.format.duration);
         });
 
