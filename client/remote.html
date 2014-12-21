@@ -35,8 +35,8 @@
            $('.media__info-season').html(duration);
         });
 
-        socket.on('progress', function(duration) {
-            renderProgress(duration);
+        socket.on('progress', function(progress) {
+            renderProgress(progress);
         });
 
         function renderProgress(progress) {

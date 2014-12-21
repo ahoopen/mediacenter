@@ -74,9 +74,12 @@ module.exports = {
 
     getFormattedDuration: function () {
         this.updateDuration();
-        var duration = this.player.duration;
+        var duration = this.player.duration,
+            current = duration.asSeconds();
 
-        return moment.duration(duration.asSeconds(), "seconds").format("hh:mm:ss");
+        console.log('current: ', current);
+
+        return moment.duration(current, "seconds").format("hh:mm:ss");
     },
 
     getTotalDuration: function (file) {
