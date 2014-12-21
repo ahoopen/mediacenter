@@ -74,7 +74,7 @@ module.exports = {
         this.updateDuration();
         var duration = this.player.duration;
 
-        return moment(duration).format('hh : mm : ss');
+        return duration.hours() + " : " + duration.minutes() + " : " + duration.seconds();
     },
 
     getTotalDuration: function (file) {
