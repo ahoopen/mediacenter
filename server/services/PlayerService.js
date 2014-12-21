@@ -79,7 +79,7 @@ module.exports = {
 
         console.log('current: ', current);
 
-        return moment.duration(current, "seconds").format("hh:mm:ss");
+        return moment.duration(current, "seconds").format("hh:mm:ss", 3);
     },
 
     getTotalDuration: function (file) {

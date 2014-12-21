@@ -1,13 +1,22 @@
 
 .navigation__bar {
-    height: 100px;
+    height: 60px;
     background-color: #090804;
     width: 100%;
     padding-top: 30px;
     text-align: center;
     color: #B6A472;
     @include font-size(38);
+}
+
+.navigation__bar-time {
+    width: 100%;
+    text-align: center;
+    color: #efefef;
     border-bottom: 2px solid #2D2D2D;
+    background-color: #090804;
+    padding-bottom: 15px;
+    @include font-size(32);
 }
 
 .media__info {

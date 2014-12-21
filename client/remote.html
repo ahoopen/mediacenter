@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1">
+    <meta name="viewport" content="width=device-width initial-scale=1">
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.js"></script>
@@ -32,7 +32,7 @@
         });
 
         socket.on('duration', function(duration) {
-           $('.media__info-season').html(duration);
+           $('.navigation__bar-time').html(duration);
         });
 
         socket.on('progress', function(progress) {
@@ -70,6 +70,7 @@
     <div class="navigation__bar">
         Now playing
     </div>
+    <div class="navigation__bar-time"></div>
     <div class="media__info">
         <div class="media__info-title">Game of Thrones - Valar Dohaeris</div>
         <div class="media__info-season">Season 3 episode 1</div>
