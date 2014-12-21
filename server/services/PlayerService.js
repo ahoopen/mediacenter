@@ -1,5 +1,7 @@
 /* module, require */
 
+require("moment-duration-format");
+
 var moment = require('moment'),
     Ffmpeg = require('fluent-ffmpeg');
 
@@ -74,7 +76,7 @@ module.exports = {
         this.updateDuration();
         var duration = this.player.duration;
 
-        return duration.hours() + " : " + duration.minutes() + " : " + duration.seconds();
+        return moment.duration(duration.asSeconds(), "seconds").format("hh:mm:ss");
     },
 
     getTotalDuration: function (file) {
@@ -86,7 +88,6 @@ module.exports = {
             }
             self.player.total = Math.round(metadata.format.duration);
         });
-
     },
 
     getPlayingProgress : function() {

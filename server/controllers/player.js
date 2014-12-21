@@ -2,9 +2,6 @@
 var omx = require('omx-manager'),
     PlayerService = require('../services/PlayerService');
 
-var child_process = require('child_process'),
-    exec = child_process.exec;
-
 module.exports = {
 
     subtitles: false,
