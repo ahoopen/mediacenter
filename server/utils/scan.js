@@ -49,9 +49,5 @@ var getFiles = function (dir, extensions, callback) {
     });
 };
 
-getFiles('/media/usb', ['.mkv', '.mp4', '.avi'], function (err, files) {
-    if (err) {
-        throw err;
-    }
-    console.log(files);
-});
+
+module.exports = getFiles;

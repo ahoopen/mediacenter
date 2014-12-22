@@ -38,6 +38,7 @@
     "moment-duration-format": "^1.3.0",
     "mongoose": "^3.8.11",
     "omx-manager": "0.0.3",
+    "trakt": "0.0.5-2",
     "socket.io": "^1.2.0"
   },
   "author": "Auke ten Hoopen",
