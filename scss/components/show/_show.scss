@@ -1,0 +1,97 @@
+body {
+    // 7
+    // 11
+    // 17
+    background: url('/blurred-background-7.jpg');
+}
+
+.home__container {
+    display: -webkit-flex;
+    display: flex;
+    margin: 40px;
+}
+
+.show__details {
+    -webkit-flex: 1;
+    flex: 1;
+    width: 600px;
+    min-width: 400px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 35px;
+    background-color: $color_black--1;
+    z-index: -1;
+
+    .paragraph {
+        @include font-size(20);
+        color: $color_grey--2;
+        line-height: 1.5;
+    }
+
+    .heading {
+        @include font-size(36);
+        color: $color-white--1;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+.show__poster {
+    -webkit-flex: none;
+    flex: none;
+    width: 500px;
+
+    img {
+        width: 500px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: auto;
+        box-shadow: 3px 0px 10px $color-black--1;
+        z-index: 5;
+    }
+}
+
+.show__menu {
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 450px;
+    background-color: $color_white--2;
+    box-shadow: 5px 0px 10px $color-black--1;
+
+    .show__menu-titel {
+        .title {
+            @include font-size(70);
+            color: $color-black--1;
+            font-weight: bold;
+            padding-left: 35px;
+            letter-spacing: 5px;
+        }
+    }
+
+    .menu__nav-wrapper {
+        padding-left: 0;
+        padding-top: 50px;
+    }
+
+    .menu__item {
+        padding-top: 35px;
+        padding-bottom: 35px;
+        padding-left: 40px;
+        list-style: none;
+        float: left;
+        width: 100%;
+        border-bottom: 3px solid $color-grey--3;
+        @include font-size(24);
+
+        strong {
+            padding-left: 30px;
+        }
+    }
+
+    .show__menu-info {
+        background-color: $color-white--1;
+        float: left;
+        width: 100%;
+    }
+
+}
