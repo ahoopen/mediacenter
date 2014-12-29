@@ -5,6 +5,7 @@
         "backbone-patterns": "git://github.com/rickekelschot/backbone-patterns.git#0.1.7",
         "sass-list-maps": "git://github.com/lunelson/sass-list-maps.git#1.0.0",
         "jquery": "~2.1.1",
+        "jQuery.mmenu": "4.7.5",
         "bourbon": "=4.0.2",
         "lodash": "=2.4.1",
         "moment" : "2.8.4",
@@ -17,6 +18,8 @@
         "requirejs-dust": "=0.0.1",
         "requirejs-text": "=2.0.10",
         "requirejs-plugins ": "=1.0.2",
+        "malihu-custom-scrollbar-plugin": "git://github.com/malihu/malihu-custom-scrollbar-plugin.git#3.0.3",
+
         "requirejs": "2.1.14"
     }
 }
