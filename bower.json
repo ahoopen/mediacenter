@@ -19,7 +19,7 @@
         "requirejs-text": "=2.0.10",
         "requirejs-plugins ": "=1.0.2",
         "malihu-custom-scrollbar-plugin": "git://github.com/malihu/malihu-custom-scrollbar-plugin.git#3.0.3",
-
+        "spinkit": "1.0.0",
         "requirejs": "2.1.14"
     }
 }

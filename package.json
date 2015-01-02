@@ -41,7 +41,7 @@
     "omx-manager": "0.0.3",
     "promise": "^6.0.1",
     "socket.io": "^1.2.0",
-    "trakt": "0.0.5-2"
+    "fs-extra": "^0.10.0"
   },
   "author": "Auke ten Hoopen",
   "homepage": "https://github.com/ahoopen/mediacenter"

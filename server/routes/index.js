@@ -13,4 +13,8 @@ router.get('/remote', function (request, response) {
     response.render('remote.html');
 });
 
+router.get('/indexing', function (request, response) {
+    response.render('indexing.html');
+});
+
 module.exports = router;

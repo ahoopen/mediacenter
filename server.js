@@ -17,7 +17,7 @@ connect();
 
 // error handling
 mongoose.connection.on('error', function (err) {
-    console.log("error mongoose : ", err);
+    //console.log("error mongoose : ", err);
 });
 
 mongoose.connection.on('disconnected', function () {
@@ -56,6 +56,6 @@ server.listen(port, function () {
     console.log("Listening on " + port);
 });
 
-remoteControle.init(io);
+//remoteControle.init(io);
 
 module.exports = app;

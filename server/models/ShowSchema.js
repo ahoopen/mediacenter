@@ -23,13 +23,17 @@ var EpisodeSchema = new Schema({
 EpisodeSchema.statics.exists = function (id) {
     var promise = new mongoose.Promise;
 
-    this.findOne({ref: id})
+    this.find({ref: id})
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);
             }
-
-            (result !== null) ? promise.complete() : promise.error()
+            console.log("Episode exists? ", result);
+            if (result !== null && result.length) {
+                promise.complete();
+            } else {
+                promise.error();
+            }
         });
 
     return promise;
@@ -46,6 +50,14 @@ var ShowSchema = new Schema({
     episodes: [{type: ObjectId, ref: "Episode", index: true}]
 });
 
+
+/**
+ * Adds an episode to the tv show
+ *
+ * @param showId
+ * @param episode
+ * @returns {Mongoose.Promise}
+ */
 ShowSchema.statics.addEpisode = function (showId, episode) {
     var Episode = mongoose.model('Episode'),
         promise = new mongoose.Promise;
@@ -89,21 +101,91 @@ ShowSchema.statics.addEpisode = function (showId, episode) {
  * @param id
  * @returns {Mongoose.Promise}
  */
-ShowSchema.statics.exists = function (id) {
+ShowSchema.statics.exists = function (show) {
     var promise = new mongoose.Promise;
 
-    this.findOne({ref: id})
+    this.find({ref: show.id})
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);
             }
-
-            (result !== null) ? promise.complete() : promise.error()
+            console.log("exists?", result);
+            (result !== null) ? promise.error() : promise.complete(show);
         });
 
     return promise;
 };
 
+/**
+ * Checks if the episode already exists on the tv show
+ *
+ * @param showId
+ * @param season_number
+ * @param episode_number
+ * @returns {Mongoose.Promise}
+ */
+ShowSchema.statics.hasEpisode = function (showId, season_number, episode_number) {
+    var promise = new mongoose.Promise;
+
+    this.findOne({ref: showId})
+        .populate({
+            path: 'episodes',
+            match: {
+                season: parseInt(season_number, 10),
+                number: parseInt(episode_number, 10)
+            }
+        })
+        .exec(function (err, result) {
+            if (err) {
+                promise.error(err);
+            }
+
+            if (result === null) {
+                promise.error();
+            } else if (result.episodes.length == 0) {
+                promise.error();
+            }
+            else {
+                promise.complete(result);
+            }
+        });
+
+    return promise;
+};
+
+/**
+ * Return the tv show
+ *
+ * @param title
+ * @returns {Mongoose.Promise}
+ */
+ShowSchema.statics.getShow = function (title) {
+    var promise = new mongoose.Promise;
+
+    this.findOne({title: title})
+        .exec(function (err, result) {
+            if (err) {
+                promise.error(err);
+            }
+
+            if (result === null) {
+                promise.error();
+            } else {
+                promise.complete(result);
+            }
+        });
+
+    return promise;
+};
+
+/**
+ * Gives back an episode list of the given season
+ *
+ *
+ * @param showId
+ * @param season_number
+ * @returns {Mongoose.Promise}
+ */
 ShowSchema.statics.season = function (showId, season_number) {
     var promise = new mongoose.Promise;
 
@@ -111,7 +193,7 @@ ShowSchema.statics.season = function (showId, season_number) {
         .populate({
             path: 'episodes',
             match: {
-                season: season_number
+                season: parseInt(season_number, 10)
             }
         })
         .exec(function (err, result) {

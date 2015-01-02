@@ -2,10 +2,10 @@
 
 require('../models/ShowSchema');
 var Promise = require('promise'),
-    TvService = require('../services/tvService');
+    TvService = require('../services/TvService');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mediacenter');
+//mongoose.connect('mongodb://localhost/mediacenter');
 
 var Show = mongoose.model('Show');
 
@@ -27,13 +27,36 @@ var tvShow = {
                 .then(function (show) {
                     return self.isNew(show);
                 }).then(function (show) {
+                    console.log('start creating the tv show.. [' + show.name + ']');
                     return self.createShow(show);
-                }).then(function() {
+                }).then(function (showId) {
                     // succesfull created a new tv show
-                    resolve();
+                    resolve(showId);
                 }, function (err) {
                     reject(err);
                 });
+        });
+    },
+
+    get: function (title) {
+        return Show.getShow(title);
+    },
+
+    /**
+     * Checks if the show already has the episode
+     *
+     * @param showId
+     * @param season_number
+     * @param episode_number
+     * @returns {Promise}
+     */
+    hasEpisode: function (showId, season_number, episode_number) {
+        return new Promise(function (resolve) {
+            Show.hasEpisode(showId, season_number, episode_number).then(function () {
+                resolve(true);
+            }, function () {
+                resolve(false);
+            });
         });
     },
 
@@ -63,26 +86,38 @@ var tvShow = {
         return new Promise(function (resolve, reject) {
             Show.create({
                 ref: response.id,
-                title: response.name,
+                title: response.name.toLowerCase(),
                 poster: response.poster_path
             }, function (err) {
                 if (err) {
+                    console.log('errror create tv show..', err);
                     reject(err);
                 }
-                resolve();
+                console.log('done making tv show..', response.name);
+                resolve(response.id);
             });
         });
     }
 };
 
-tvShow.create('breaking bad')
-    .then(function () {
-        console.log("tv show created!");
-    }, function() {
-        console.log('already created :(');
-    });
-
 module.exports = tvShow;
 
+
+//Show.find({}).exec( function(err, result) {
+//    console.log(result);
+////});
+//
+//Show.season(1396, 1).then( function(result) {
+//   console.log(result);
+//});
+
+//tvShow.create('breaking bad')
+//    .then(function () {
+//        console.log("tv show created!");
+//    }, function() {
+//        console.log('already created :(');
+//    });
+//
+//
 
 
