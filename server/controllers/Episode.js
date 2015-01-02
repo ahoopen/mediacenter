@@ -1,7 +1,7 @@
 /* globals require, module */
 require('../models/ShowSchema');
 var Promise = require('promise'),
-    TvService = require('../services/TvService'),
+    TvService = require('../services/tvService'),
     Cache = require('../utils/cache');
 
 var mongoose = require('mongoose');

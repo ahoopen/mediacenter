@@ -2,7 +2,7 @@
 
 require('../models/ShowSchema');
 var Promise = require('promise'),
-    TvService = require('../services/TvService');
+    TvService = require('../services/tvService');
 
 var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/mediacenter');
