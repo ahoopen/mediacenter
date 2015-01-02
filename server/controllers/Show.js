@@ -6,7 +6,7 @@ var Promise = require('promise'),
     Cache = require('../utils/cache');
 
 var mongoose = require('mongoose');
-//mongoose.connect('mongodb://localhost/mediacenter');
+mongoose.connect('mongodb://localhost/mediacenter');
 
 var Show = mongoose.model('Show');
 
@@ -92,9 +92,10 @@ var tvShow = {
                 Show.create({
                     ref: ref,
                     title: response.title.toLowerCase(),
-                    summary : response.summary,
-                    genre : response.genres,
-                    poster: file.path
+                    summary: response.summary,
+                    genre: response.genres,
+                    poster: file.path,
+                    background: response.background
                 }, function (err) {
                     if (err) {
                         console.log('errror create tv show..', err);
@@ -117,9 +118,11 @@ module.exports = tvShow;
 //    console.log(shows);
 //});
 //
-//Show.season(1396, 1).then( function(result) {
-//   console.log(result);
-//});
+Show.season(1396, 1).then( function(result) {
+   console.log(result);
+});
+
+//Show.episode(1396,1,1);
 
 //tvShow.create('breaking bad')
 //    .then(function () {

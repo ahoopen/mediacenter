@@ -2,13 +2,36 @@ body {
     // 7
     // 11
     // 17
-    background: url('/blurred-background-7.jpg');
+//    background: url('/blurred-background-7.jpg');
+//    background: url('/background.jpg');
+//    filter: blur(15px);
+
+}
+
+body {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    height: 100%;
+    background-color: $color-black--1;
+}
+body:before {
+    content: "";
+    position: fixed;
+    background: url('/background.jpg');
+    background-size: cover;
+    z-index: -1; /* Keep the background behind the content */
+    height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
+
+    /* don't forget to use the prefixes you need */
+    transform: scale(5);
+    transform-origin: top left;
+    filter: blur(2px);
 }
 
 .home__container {
     display: -webkit-flex;
     display: flex;
-    margin: 100px;
+    margin: 12rem;
 }
 
 .show__details {

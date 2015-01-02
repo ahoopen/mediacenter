@@ -1,10 +1,18 @@
 /* globals require, module */
 
 var api = require('moviedb')('d086542135ccd8848541b28dfeea5d91'),
-    Promise = require('promise');
+    Promise = require('promise'),
+    Cache = require('../utils/cache');
 
 var tvService = {
 
+    /**
+     * Get metadata for the tv show. Consists on two api calls to get
+     * all the information needed
+     *
+     * @param title
+     * @returns {Promise}
+     */
     show: function (title) {
         var self = this;
 
@@ -16,7 +24,8 @@ var tvService = {
                         title: response.name,
                         summary: details.summary,
                         genres: details.genres,
-                        poster: response.poster_path
+                        poster: response.poster_path,
+                        background: details.background
                     });
                 }, reject);
             }, reject);
@@ -65,14 +74,17 @@ var tvService = {
                     reject();
                 }
 
-                var details = {
-                    summary: response.overview,
-                    genres: response.genres.map(function (genre) {
-                        return genre.name;
-                    })
-                };
-
-                resolve(details);
+                var path = 'http://image.tmdb.org/t/p/w1920' + response.backdrop_path;
+                Cache.save(id, path).then(function (file) {
+                    var details = {
+                        summary: response.overview,
+                        background: file.path,
+                        genres: response.genres.map(function (genre) {
+                            return genre.name;
+                        })
+                    };
+                    resolve(details);
+                });
             });
         });
     },

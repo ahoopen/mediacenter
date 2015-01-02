@@ -28,7 +28,7 @@ EpisodeSchema.statics.exists = function (id) {
             if (err) {
                 promise.error(err);
             }
-            console.log("Episode exists? ", result);
+
             if (result !== null && result.length) {
                 promise.complete();
             } else {
@@ -47,6 +47,7 @@ var ShowSchema = new Schema({
     summary: {type: String},
     genre: {type: Array},
     poster: {type: String},
+    background: {type: String},
     episodes: [{type: ObjectId, ref: "Episode", index: true}]
 });
 
@@ -186,7 +187,7 @@ ShowSchema.statics.getAll = function () {
     var promise = new mongoose.Promise;
 
     this.find()
-        .select('ref title summary genre poster')
+        .select('ref title summary genre poster background')
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);
@@ -235,5 +236,34 @@ ShowSchema.statics.season = function (showId, season_number) {
     return promise;
 };
 
+/**
+ * Return an episode of a tv show
+ *
+ * @param showId
+ * @param season_number
+ * @param episode_number
+ * @returns {Mongoose.Promise}
+ */
+ShowSchema.statics.episode = function (showId, season_number, episode_number) {
+    var promise = new mongoose.Promise;
+
+    this.findOne({ref: showId})
+        .populate({
+            path: 'episodes',
+            match: {
+                season: parseInt(season_number),
+                number: parseInt(episode_number)
+            }
+        })
+        .exec(function (err, result) {
+            if (err) {
+                promise.error(err);
+            }
+
+            console.log(result);
+        });
+
+    return promise;
+};
 
 exports.Show = mongoose.model('Show', ShowSchema);
