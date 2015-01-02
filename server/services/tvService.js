@@ -21,7 +21,7 @@ var tvService = {
 
                 if (typeof response.results !== 'undefined' && response.results.length >= 1) {
                     // always take the first result
-                    resolve(response.results.pop());
+                    resolve(response.results.shift());
                 } else {
                     resolve({
                         error: {
