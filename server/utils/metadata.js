@@ -45,10 +45,10 @@ var doParse = function (file, callback) {
             console.log('Show exists [' + show.title + '] ! Just add episode');
             // check if the episode already exists. if so
             // we dont want to add it again
-            hasEpisode(show.ref, info).then( function() {
+            hasEpisode(show.ref, info).then(function () {
                 console.log('next file..');
                 callback();
-            }, function() {
+            }, function () {
                 addEpisode(show.ref, info, callback);
             });
         }, function () {
@@ -63,11 +63,11 @@ var doParse = function (file, callback) {
     progress();
 };
 
-var progress = function() {
+var progress = function () {
     var percentage = parseInt((nrScanned / totalFiles) * 100);
     if (percentage > 0) {
         console.log("percentage: ", percentage);
-        //io.sockets.emit('progress', {msg: perc});
+        //io.sockets.emit('progress', {msg: percentage});
     }
 };
 

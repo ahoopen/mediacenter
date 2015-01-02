@@ -5,13 +5,31 @@ var api = require('moviedb')('d086542135ccd8848541b28dfeea5d91'),
 
 var tvService = {
 
+    show: function (title) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.showSearch(title).then(function (response) {
+                self.showDetails(response.id).then(function (details) {
+                    resolve({
+                        id: response.id,
+                        title: response.name,
+                        summary: details.summary,
+                        genres: details.genres,
+                        poster: response.poster_path
+                    });
+                }, reject);
+            }, reject);
+        });
+    },
+
     /**
      * Search for tv show. return a promise object.
      *
      * @param title {string}
      * @returns {Promise}
      */
-    show: function (title) {
+    showSearch: function (title) {
 
         return new Promise(function (resolve, reject) {
             api.searchTv({query: title}, function (err, response) {
@@ -30,6 +48,31 @@ var tvService = {
                         }
                     });
                 }
+            });
+        });
+    },
+
+    /**
+     * Gives back detail information about a tv show
+     *
+     * @param id
+     * @returns {Promise}
+     */
+    showDetails: function (id) {
+        return new Promise(function (resolve, reject) {
+            api.tvInfo({id: id}, function (err, response) {
+                if (err) {
+                    reject();
+                }
+
+                var details = {
+                    summary: response.overview,
+                    genres: response.genres.map(function (genre) {
+                        return genre.name;
+                    })
+                };
+
+                resolve(details);
             });
         });
     },
@@ -57,6 +100,3 @@ var tvService = {
 
 
 module.exports = tvService;
-
-
-// http://image.tmdb.org/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg

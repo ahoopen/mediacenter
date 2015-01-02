@@ -109,7 +109,6 @@ ShowSchema.statics.exists = function (show) {
             if (err) {
                 promise.error(err);
             }
-            console.log("exists?", result);
             (result !== null) ? promise.error() : promise.complete(show);
         });
 
@@ -179,6 +178,26 @@ ShowSchema.statics.getShow = function (title) {
 };
 
 /**
+ * Returns all the tv shows
+ *
+ * @returns {Mongoose.Promise}
+ */
+ShowSchema.statics.getAll = function () {
+    var promise = new mongoose.Promise;
+
+    this.find()
+        .select('ref title summary genre poster')
+        .exec(function (err, result) {
+            if (err) {
+                promise.error(err);
+            }
+            promise.complete(result);
+        });
+
+    return promise;
+};
+
+/**
  * Gives back an episode list of the given season
  *
  *
@@ -189,7 +208,7 @@ ShowSchema.statics.getShow = function (title) {
 ShowSchema.statics.season = function (showId, season_number) {
     var promise = new mongoose.Promise;
 
-    this.find({ref: showId})
+    this.findOne({ref: showId})
         .populate({
             path: 'episodes',
             match: {
@@ -200,6 +219,16 @@ ShowSchema.statics.season = function (showId, season_number) {
             if (err) {
                 promise.error(err);
             }
+
+            result.episodes = result.episodes.sort(function (a, b) {
+                if (a.number < b.number) {
+                    return -1;
+                } else if (a.number > b.number) {
+                    return 1;
+                }
+                return 0;
+            });
+
             promise.complete(result);
         });
 

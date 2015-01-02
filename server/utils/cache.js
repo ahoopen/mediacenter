@@ -2,6 +2,7 @@
 
 var fs = require('fs-extra'),
     url = require('url'),
+    path = require('path'),
     Promise = require('promise'),
     http = require('http');
 
@@ -50,14 +51,14 @@ var cache = {
         var self = this;
 
         return new Promise( function(resolve, reject) {
-            var dir = 'cache/' + folder.toString().replace(/ /g, "-"),
+            var dir = path.resolve('./../../cache/' + folder.toString().replace(/ /g, "-")),
                 filePath = dir + '/' + self.getFileName(file);
 
             // garandeer dat de directory bestaat.
             // maak de directory aan indien deze nog niet bestaat, anders doe niks.
             self.createDir(dir);
 
-            // haal de afbeelding op en schrijf hem weg naar de cache.
+            // get the image and write it to the cache folder
             http.get(file, function (response) {
                 var imagedata = '';
 
@@ -72,11 +73,7 @@ var cache = {
                             reject(err);
                         }
 
-                        // public prefix verwijderen van het path.
-                        var paths = filePath.split('/');
-                        paths.shift();
-
-                        resolve({path: paths.join('/')});
+                        resolve({path: filePath });
                     });
                 });
             });
@@ -91,7 +88,8 @@ var cache = {
      */
     remove: function (dir) {
         return new Promise(function (resolve, reject) {
-            fs.remove('public/cache/' + dir + '/', function (err) {
+            var dirPath = path.resolve('./../../cache/' + dir + '/');
+            fs.remove(dirPath, function (err) {
                 if (err) {
                     reject(err);
                 }

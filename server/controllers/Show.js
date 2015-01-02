@@ -2,7 +2,8 @@
 
 require('../models/ShowSchema');
 var Promise = require('promise'),
-    TvService = require('../services/tvService');
+    TvService = require('../services/tvService'),
+    Cache = require('../utils/cache');
 
 var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/mediacenter');
@@ -27,7 +28,7 @@ var tvShow = {
                 .then(function (show) {
                     return self.isNew(show);
                 }).then(function (show) {
-                    console.log('start creating the tv show.. [' + show.name + ']');
+                    console.log('start creating the tv show.. [' + show.title + ']');
                     return self.createShow(show);
                 }).then(function (showId) {
                     // succesfull created a new tv show
@@ -83,18 +84,27 @@ var tvShow = {
      * @returns {Promise}
      */
     createShow: function (response) {
+        var ref = response.id,
+            path = 'http://image.tmdb.org/t/p/w500' + response.poster;
+
         return new Promise(function (resolve, reject) {
-            Show.create({
-                ref: response.id,
-                title: response.name.toLowerCase(),
-                poster: response.poster_path
+            Cache.save(ref, path).then(function (file) {
+                Show.create({
+                    ref: ref,
+                    title: response.title.toLowerCase(),
+                    summary : response.summary,
+                    genre : response.genres,
+                    poster: file.path
+                }, function (err) {
+                    if (err) {
+                        console.log('errror create tv show..', err);
+                        reject(err);
+                    }
+                    console.log('done making tv show..', response.title);
+                    resolve(response.id);
+                });
             }, function (err) {
-                if (err) {
-                    console.log('errror create tv show..', err);
-                    reject(err);
-                }
-                console.log('done making tv show..', response.name);
-                resolve(response.id);
+                console.log(err);
             });
         });
     }
@@ -103,9 +113,9 @@ var tvShow = {
 module.exports = tvShow;
 
 
-//Show.find({}).exec( function(err, result) {
-//    console.log(result);
-////});
+//Show.getAll().then(function (shows) {
+//    console.log(shows);
+//});
 //
 //Show.season(1396, 1).then( function(result) {
 //   console.log(result);
