@@ -6,7 +6,7 @@ var Promise = require('promise'),
     Cache = require('../utils/cache');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mediacenter');
+//mongoose.connect('mongodb://localhost/mediacenter');
 
 var Show = mongoose.model('Show');
 
@@ -118,9 +118,9 @@ module.exports = tvShow;
 //    console.log(shows);
 //});
 //
-Show.season(1396, 1).then( function(result) {
-   console.log(result);
-});
+//Show.season(1396, 1).then( function(result) {
+//   console.log(result);
+//});
 
 //Show.episode(1396,1,1);
 
