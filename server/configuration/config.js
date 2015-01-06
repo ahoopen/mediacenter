@@ -39,7 +39,7 @@ module.exports = {
     },
 
     metadata: {
-        folder: "/Users/auketenhoopen/dev/src/data",
+        folder: "/media/usb/",
         //
         extensions: ['.mkv', '.mp4', '.avi', 'mpeg', 'mov', 'wmv']
     }

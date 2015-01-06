@@ -1,4 +1,7 @@
+/* globals require */
+
 var path = require('path'),
+    config = require('../configuration/config'),
     Promise = require('promise'),
     tv_title_cleaner = require('./title-cleaner'),
     scan = require('./scan');
@@ -151,7 +154,8 @@ var getEpisodeInfo = function (episodeTitle) {
 /* Lookup */
 var loadData = function (callback) {
     nrScanned = 0;
-    scan('/Users/auketenhoopen/Desktop/data', ['.mkv', '.mp4', '.avi'], function (err, results) {
+
+    scan( config.metadata.folder, config.metadata.extensions, function (err, results) {
         if (err) {
             throw err;
         }
