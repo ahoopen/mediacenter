@@ -135,6 +135,7 @@ var getEpisodeInfo = function (episodeTitle) {
         episodeSeasonMatch = episodeTitle.match(/[sS]([0-9]{2})/),
         episodeNumberMatch = episodeTitle.match(/[eE]([0-9]{2})/);
 
+    console.log( episodeTitle );
     if (episodeSeasonMatch) {
         episodeSeason = episodeSeasonMatch[0].replace(/[sS]/, "");
     }
