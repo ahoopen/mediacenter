@@ -12,15 +12,17 @@ var getFiles = function (dir, extensions, callback) {
         async.each(files, function (file, next) {
             var filePath = dir + '/' + file;
 
+            // exclude hidden directories.
+            if( isUnixHiddenPath(filePath) ) {
+                next();
+            }
+
             fs.stat(filePath, function (err, stat) {
-                // fout gevonden
                 if (err) {
                     return next(err);
                 }
 
-                // is het een directory?
                 if (stat.isDirectory()) {
-                    // scan deze directory ook
                     getFiles(filePath, extensions, function (err, results) {
                         if (err) {
                             return next(err);
@@ -29,11 +31,8 @@ var getFiles = function (dir, extensions, callback) {
                         returnFiles = returnFiles.concat(results);
                         next();
                     });
-                    // is het een bestand?
                 } else if (stat.isFile()) {
-                    // doorloop de extensie array
                     extensions.forEach(function (extension) {
-                        // bestand komt overeen met file extensie.
                         if (file.indexOf(extension, file.length - extension.length) !== -1) {
                             returnFiles.push({filename: file, location: filePath});
                         }
@@ -49,5 +48,13 @@ var getFiles = function (dir, extensions, callback) {
     });
 };
 
+/**
+ * Checks whether a path starts with or contains a hidden file or a folder.
+ * @param {string} source - The path of the file that needs to be validated.
+ * returns {boolean} - `true` if the source is blacklisted and otherwise `false`.
+ */
+var isUnixHiddenPath = function (path) {
+    return (/(^|.\/)\.+[^\/\.]/g).test(path);
+};
 
 module.exports = getFiles;
