@@ -44,6 +44,5 @@ module.exports = {
         folder: "/media/usb/",
         //
         extensions: ['.mkv', '.mp4', '.avi', 'mpeg', 'mov', 'wmv']
-        //extensions: ['.mkv']
     }
 };

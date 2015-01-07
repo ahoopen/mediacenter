@@ -5,7 +5,7 @@ var express = require('express'),
     path = require('path'),
     fs = require('fs'),
     routes = require('./server/routes/index'),
-    middleware = require('./server/middleware/middleware'),å
+    middleware = require('./server/middleware/middleware'),
     remoteControle = require('./server/controllers/player'),
     config = require('./server/configuration/config'),
     mongoose = require('mongoose');
@@ -18,7 +18,7 @@ connect();
 
 // error handling
 mongoose.connection.on('error', function (err) {
-    //console.log("error mongoose : ", err);
+    console.log("error mongoose : ", err);
 });
 
 mongoose.connection.on('disconnected', function () {
@@ -43,7 +43,6 @@ app.set('view engine', 'ejs');
 
 
 middleware(app);
-
 // set up all the routes
 routes(app);
 

@@ -45,13 +45,14 @@ var doParse = function (file, callback) {
     // get the tv show from the database
     Show.get(info.title)
         .then(function (show) {
-            console.log('Show exists [' + show.title + '] ! Just add episode');
+            console.log('Show exists [' + show.title + '] !');
             // check if the episode already exists. if so
             // we dont want to add it again
             hasEpisode(show.ref, info).then(function () {
-                console.log('next file..');
+                console.log('skip file..');
                 callback();
             }, function () {
+                console.log('add episode to show');
                 addEpisode(show.ref, info, callback);
             });
         }, function () {

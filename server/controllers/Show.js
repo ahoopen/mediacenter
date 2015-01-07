@@ -2,6 +2,7 @@
 
 require('../models/ShowSchema');
 var Promise = require('promise'),
+    winston = require('winston'),
     TvService = require('../services/tvService'),
     Cache = require('../utils/cache');
 

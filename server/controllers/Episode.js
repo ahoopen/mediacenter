@@ -85,9 +85,6 @@ var tvEpisode = {
 
 module.exports = tvEpisode;
 //
-Show.find({}).exec( function(err, result) {
-    console.log(result);
-});
 
 //Show.season(1407, 1)
 //    .then( function(result) {

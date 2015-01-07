@@ -159,10 +159,10 @@ ShowSchema.statics.hasEpisode = function (showId, season_number, episode_number)
  * @param title
  * @returns {Mongoose.Promise}
  */
-ShowSchema.statics.getShow = function (title) {
+ShowSchema.statics.getShow = function (show_id) {
     var promise = new mongoose.Promise;
 
-    this.findOne({title: title})
+    this.findOne({ref: show_id})
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);
@@ -187,7 +187,7 @@ ShowSchema.statics.getAll = function () {
     var promise = new mongoose.Promise;
 
     this.find()
-        .select('ref title summary genre poster background')
+        .select('_id ref title summary poster background genre')
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);
