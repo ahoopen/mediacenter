@@ -1,6 +1,7 @@
 /* globals require, module */
 
-var api = require('moviedb')('d086542135ccd8848541b28dfeea5d91'),
+var config = require('../configuration/config'),
+    api = require('moviedb')(config.metadata.apiKey),
     Promise = require('promise'),
     Cache = require('../utils/cache');
 

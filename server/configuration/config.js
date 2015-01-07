@@ -39,9 +39,11 @@ module.exports = {
     },
 
     metadata: {
+        apiKey : 'd086542135ccd8848541b28dfeea5d91',
+
         folder: "/media/usb/",
         //
-        //extensions: ['.mkv', '.mp4', '.avi', 'mpeg', 'mov', 'wmv']
-        extensions: ['.mkv']
+        extensions: ['.mkv', '.mp4', '.avi', 'mpeg', 'mov', 'wmv']
+        //extensions: ['.mkv']
     }
 };
