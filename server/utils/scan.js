@@ -15,32 +15,32 @@ var getFiles = function (dir, extensions, callback) {
             // exclude hidden directories.
             if( isUnixHiddenPath(filePath) ) {
                 next();
-            }
+            } else {
+                fs.stat(filePath, function (err, stat) {
+                    if (err) {
+                        return next(err);
+                    }
 
-            fs.stat(filePath, function (err, stat) {
-                if (err) {
-                    return next(err);
-                }
+                    if (stat.isDirectory()) {
+                        getFiles(filePath, extensions, function (err, results) {
+                            if (err) {
+                                return next(err);
+                            }
 
-                if (stat.isDirectory()) {
-                    getFiles(filePath, extensions, function (err, results) {
-                        if (err) {
-                            return next(err);
-                        }
+                            returnFiles = returnFiles.concat(results);
+                            next();
+                        });
+                    } else if (stat.isFile()) {
+                        extensions.forEach(function (extension) {
+                            if (file.indexOf(extension, file.length - extension.length) !== -1) {
+                                returnFiles.push({filename: file, location: filePath});
+                            }
+                        });
 
-                        returnFiles = returnFiles.concat(results);
                         next();
-                    });
-                } else if (stat.isFile()) {
-                    extensions.forEach(function (extension) {
-                        if (file.indexOf(extension, file.length - extension.length) !== -1) {
-                            returnFiles.push({filename: file, location: filePath});
-                        }
-                    });
-
-                    next();
-                }
-            });
+                    }
+                });
+            }
             // error callback
         }, function (err) {
             callback(err, returnFiles);
