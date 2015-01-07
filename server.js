@@ -5,6 +5,7 @@ var express = require('express'),
     path = require('path'),
     fs = require('fs'),
     routes = require('./server/routes/index'),
+    middleware = require('./server/middleware/middleware'),å
     remoteControle = require('./server/controllers/player'),
     config = require('./server/configuration/config'),
     mongoose = require('mongoose');
@@ -35,12 +36,16 @@ fs.readdirSync(models_path).forEach(function (file) {
 var app = express();
 
 app.use(express.static(path.join(__dirname, 'target')));
+app.use(express.static(path.join(__dirname, 'cache')));
 app.set('views', __dirname + '/client');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
-// routes
-app.use('/', routes);
+
+middleware(app);
+
+// set up all the routes
+routes(app);
 
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
