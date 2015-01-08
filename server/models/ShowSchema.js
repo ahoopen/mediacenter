@@ -187,7 +187,7 @@ ShowSchema.statics.getAll = function () {
     var promise = new mongoose.Promise;
 
     this.find()
-        .select('_id ref title summary poster background genre')
+        .select('ref title summary poster genre')
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);

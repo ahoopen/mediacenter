@@ -30,3 +30,4 @@ node_modules
 client/bower_components
 target
 cache
+/server/logs/*

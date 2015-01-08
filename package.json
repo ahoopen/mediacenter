@@ -17,6 +17,7 @@
     "episoder": "0.1.5",
     "express": "~4.9.0",
     "fluent-ffmpeg": "git://github.com/fluent-ffmpeg/node-fluent-ffmpeg#327a6f907e4511251e0803ef5aefef616d81f5c4",
+    "fs-extra": "^0.10.0",
     "glob": "4.0.5",
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^1.0.0",
@@ -41,7 +42,7 @@
     "omx-manager": "0.0.3",
     "promise": "^6.0.1",
     "socket.io": "^1.2.0",
-    "fs-extra": "^0.10.0"
+    "winston": "^0.8.3"
   },
   "author": "Auke ten Hoopen",
   "homepage": "https://github.com/ahoopen/mediacenter"

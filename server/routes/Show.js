@@ -11,7 +11,7 @@ module.exports = function (app) {
      */
     app.get('/api/shows', function (request, response) {
         Shows.getAll()
-            .then( function() {
+            .then( function(result) {
                 response.json(result);
             }, function(err) {
                 //
@@ -19,7 +19,6 @@ module.exports = function (app) {
     });
 
     /**
-     *
      *
      */
     app.get('/api/shows/:show_id', function (request, response) {

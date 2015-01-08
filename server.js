@@ -11,7 +11,7 @@ var express = require('express'),
     mongoose = require('mongoose');
 
 var connect = function () {
-    //var options = {server: {socketOptions: {keepAlive: 1}}};
+    var options = {server: {socketOptions: {keepAlive: 1}}};
     mongoose.connect(config.database.db);
 };
 connect();
@@ -35,8 +35,10 @@ fs.readdirSync(models_path).forEach(function (file) {
 
 var app = express();
 
+// serve static files
 app.use(express.static(path.join(__dirname, 'target')));
 app.use(express.static(path.join(__dirname, 'cache')));
+
 app.set('views', __dirname + '/client');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
@@ -45,12 +47,6 @@ app.set('view engine', 'ejs');
 middleware(app);
 // set up all the routes
 routes(app);
-
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
 
 var port = Number(process.env.PORT || 1337);
 var server = http.createServer(app);

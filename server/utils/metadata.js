@@ -3,11 +3,20 @@
 var path = require('path'),
     config = require('../configuration/config'),
     Promise = require('promise'),
+    winston = require('winston')
     tv_title_cleaner = require('./title-cleaner'),
     scan = require('./scan');
 
 var Episode = require('../controllers/Episode');
 var Show = require('../controllers/Show');
+
+
+var logger = new (winston.Logger)({
+    transports: [
+        new (winston.transports.Console)({level: 'debug'}),
+        new (winston.transports.File)({ filename: './server/logs/metadata.log', level: 'debug'})
+    ]
+});
 
 
 var SUPPORTED_FILETYPES = new RegExp("(avi|mkv|mpeg|mov|mp4|m4v|wmv)$", "g");  //Pipe seperated
@@ -45,14 +54,14 @@ var doParse = function (file, callback) {
     // get the tv show from the database
     Show.get(info.title)
         .then(function (show) {
-            console.log('Show exists [' + show.title + '] !');
+            logger.info('TV Show already exists [' + show.title + '] !');
             // check if the episode already exists. if so
             // we dont want to add it again
             hasEpisode(show.ref, info).then(function () {
-                console.log('skip file..');
+                logger.info('episode already exists, skipping file..');
                 callback();
             }, function () {
-                console.log('add episode to show');
+                logger.info('adding episode to [' + show.title + ']');
                 addEpisode(show.ref, info, callback);
             });
         }, function () {
@@ -121,7 +130,7 @@ var addEpisode = function (ShowId, info, callback) {
     Episode.create(ShowId, info.season, info.episode, info.location).then(function () {
         callback();
     }, function () {
-        console.log('ERROR: adding episode..');
+        logger.error('ERROR: while adding episode to tv show[' + ShowId + ']');
     });
 };
 
@@ -136,7 +145,6 @@ var getEpisodeInfo = function (episodeTitle) {
         episodeSeasonMatch = episodeTitle.match(/[sS]([0-9]{2})/),
         episodeNumberMatch = episodeTitle.match(/[eE]([0-9]{2})/);
 
-    console.log( episodeTitle );
     if (episodeSeasonMatch) {
         episodeSeason = episodeSeasonMatch[0].replace(/[sS]/, "");
     }
