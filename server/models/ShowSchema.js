@@ -102,15 +102,20 @@ ShowSchema.statics.addEpisode = function (showId, episode) {
  * @param id
  * @returns {Mongoose.Promise}
  */
-ShowSchema.statics.exists = function (show) {
+ShowSchema.statics.isNew = function (show) {
     var promise = new mongoose.Promise;
 
-    this.find({ref: show.id})
+    this.findOne({ref: show.id})
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);
             }
-            (result !== null) ? promise.error() : promise.complete(show);
+
+            if(result === null) {
+                promise.complete(show);
+            } else {
+                promise.error();
+            }
         });
 
     return promise;
@@ -159,10 +164,10 @@ ShowSchema.statics.hasEpisode = function (showId, season_number, episode_number)
  * @param title
  * @returns {Mongoose.Promise}
  */
-ShowSchema.statics.getShow = function (show_id) {
+ShowSchema.statics.getShow = function (title) {
     var promise = new mongoose.Promise;
 
-    this.findOne({ref: show_id})
+    this.findOne({title: title.toLowerCase() })
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);
@@ -187,7 +192,7 @@ ShowSchema.statics.getAll = function () {
     var promise = new mongoose.Promise;
 
     this.find()
-        .select('ref title summary poster genre')
+        .select('ref title summary poster genre background')
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);

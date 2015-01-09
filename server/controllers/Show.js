@@ -70,10 +70,11 @@ var tvShow = {
      */
     isNew: function (show) {
         return new Promise(function (resolve, reject) {
-            Show.exists(show.id).then(function () {
-                reject();
-            }, function () {
+            Show.isNew(show.id).then(function () {
                 resolve(show);
+            }, function () {
+                reject();
+
             });
         });
     },

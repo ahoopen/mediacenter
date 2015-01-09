@@ -11,12 +11,12 @@ var Episode = require('../controllers/Episode');
 var Show = require('../controllers/Show');
 
 
-var logger = new (winston.Logger)({
-    transports: [
-        new (winston.transports.Console)({level: 'debug'}),
-        new (winston.transports.File)({ filename: './server/logs/metadata.log', level: 'debug'})
-    ]
-});
+//var logger = new (winston.Logger)({
+//    transports: [
+//        new (winston.transports.Console)({level: 'debug'}),
+//        new (winston.transports.File)({ filename: './server/logs/metadata.log', level: 'debug'})
+//    ]
+//});
 
 
 var SUPPORTED_FILETYPES = new RegExp("(avi|mkv|mpeg|mov|mp4|m4v|wmv)$", "g");  //Pipe seperated
@@ -54,14 +54,15 @@ var doParse = function (file, callback) {
     // get the tv show from the database
     Show.get(info.title)
         .then(function (show) {
-            logger.info('TV Show already exists [' + show.title + '] !');
+            console.log('TV Show already exists [' + show.title + '] !');
             // check if the episode already exists. if so
             // we dont want to add it again
             hasEpisode(show.ref, info).then(function () {
-                logger.info('episode already exists, skipping file..');
+                console.log('episode already exists, skipping file..');
+                //logger.info('episode already exists, skipping file..');
                 callback();
             }, function () {
-                logger.info('adding episode to [' + show.title + ']');
+                console.log('adding episode to [' + show.title + ']');
                 addEpisode(show.ref, info, callback);
             });
         }, function () {

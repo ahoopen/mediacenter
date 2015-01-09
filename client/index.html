@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--<script data-main='js/config' src="vendor/require.js"></script>-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="/vendor/jquery.mmenu.min.all.js"></script>
@@ -13,6 +14,16 @@
                     classes: "mm-light",
                     offCanvas : false
                 });
+
+                $.ajax( {
+                    url : 'api/shows'
+                }).done( function(result) {
+                    console.log(result);
+                    result.forEach( function(show) {
+
+                    });
+                });
+
             });
         </script>
     </head>

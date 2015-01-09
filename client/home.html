@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="/vendor/jquery.mmenu.min.all.js"></script>
+        <link type="text/css" rel="stylesheet" href="/css/mediacenter.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                function addRule(sheet, selector, styles) {
+                    if (!sheet) return;
+                    if (sheet.insertRule) return sheet.insertRule(selector + " {" + styles + "}", sheet.cssRules.length);
+                    if (sheet.addRule) return sheet.addRule(selector, styles);
+                }
+
+                $.ajax( {
+                    url : 'api/shows'
+                }).done( function(result) {
+                    result.forEach( function(show) {
+                        var li = $('<li/>').addClass('show__item');
+
+                        var list ='<div class="show__list">' +
+                            '<div class="show__list-image">' +
+                                '<img width="100" src="' + show.poster + '"/>' +
+                            '</div>' +
+                            '<div class="show__list-description"> ' +
+                                '<div class="show__list-title">' + show.title +'</div>' +
+                                '<div class="show__list-genre">' + show.genre.join(", ").toString() + '</div> ' +
+                            '</div>' +
+                        '</div>';
+
+                        var item = $(li).html(list);
+                        item.hover( function() {
+                            console.log('hover!',show.background);
+                            var bg = show.background;
+                            addRule(document.styleSheets[0], "body:before", "background: url('" + bg + "'); ");
+                            $('.show__poster-img').attr('src', show.poster);
+                        });
+                        $('.menu__nav-wrapper').append(item);
+                    });
+
+
+
+
+
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <div class="home__container">
+            <div class="show__menu">
+                <nav id="menu">
+                    <ul class="menu__nav-wrapper"></ul>
+                </nav>
+            </div>
+
+            <div class="show__poster">
+                <img class="show__poster-img" src="/10369.29.jpg" />
+            </div>
+        </div>
+    </body>
+</html>

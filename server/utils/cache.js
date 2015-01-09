@@ -52,7 +52,8 @@ var cache = {
 
         return new Promise( function(resolve, reject) {
             var dir = path.resolve('./../../cache/' + folder.toString().replace(/ /g, "-")),
-                filePath = dir + '/' + self.getFileName(file);
+                filePath = dir + '/' + self.getFileName(file),
+                cachePath = "/" + folder.toString().replace(/ /g, "-") + '/' + self.getFileName(file);
 
             // garandeer dat de directory bestaat.
             // maak de directory aan indien deze nog niet bestaat, anders doe niks.
@@ -73,7 +74,7 @@ var cache = {
                             reject(err);
                         }
 
-                        resolve({path: filePath });
+                        resolve({path: cachePath });
                     });
                 });
             });
