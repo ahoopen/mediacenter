@@ -1,0 +1,49 @@
+.mm-wrapper {
+    height: 600px;
+}
+.show__item {
+    display: block;
+
+    &:hover {
+        background-color: $color-red--1;
+    }
+
+    &:hover .show__list-title,
+    &:hover .show__list-genre {
+        color: $color-white--1 !important;
+    }
+}
+
+.show__list {
+    display: flex;
+    align-items: center;
+    border-top: 2px solid $color-grey--3;
+
+    .show__list-image {
+        display: inline-block;
+        width: 100px;
+        height: 150px;
+    }
+
+    .show__list-description {
+        display: inline-block;
+        padding-left: 20px;
+
+
+        .show__list-title {
+            font-family: 'Montserrat',sans-serif;
+            color: $color_black--1;
+            font-weight: 700;
+            text-transform: capitalize;
+            @include font-size(30);
+            padding-bottom: 4px;
+        }
+
+        .show__list-genre {
+            font-family: 'Montserrat',sans-serif;
+            color: $color_grey--2;
+            @include font-size(18);
+        }
+    }
+
+}
