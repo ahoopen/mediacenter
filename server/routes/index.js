@@ -5,7 +5,7 @@ var shows = require('./Show'),
     episodes = require('./Episode');
 
 module.exports = function (app) {
-    base(app);
     shows(app);
     episodes(app);
+    base(app);
 };
