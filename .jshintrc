@@ -17,6 +17,6 @@
     "maxparams": 3,
     "maxlen": 180,
     "maxdepth": 3,
-    "maxstatements": 15,
+    "maxstatements": 35,
     "globalstrict": true
 }
