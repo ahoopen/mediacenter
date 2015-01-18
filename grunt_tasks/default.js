@@ -3,6 +3,7 @@ module.exports = function(grunt) {
         'clean',
         'compile',
         'copy:vendor',
+        'copy:scrollBar',
         //'connect',
         'watch'
     ]);

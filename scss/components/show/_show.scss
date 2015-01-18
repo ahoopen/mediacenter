@@ -1,17 +1,6 @@
 body {
-    // 7
-    // 11
-    // 17
-//    background: url('/blurred-background-7.jpg');
-//    background: url('/background.jpg');
-//    filter: blur(15px);
-
-}
-
-body {
     position: absolute;
     top: 0; bottom: 0; left: 0; right: 0;
-    height: 100%;
     background-color: $color-black--1;
 }
 body:before {
@@ -32,7 +21,19 @@ body:before {
 .home__container {
     display: -webkit-flex;
     display: flex;
-    margin: 12rem;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    margin-top: 8rem;
+    height: 600px;
+
+    &.panel--bg-1 {
+        width: 800 * .9;
+        transform: translateY(0px);
+    }
+
+    &.panel--bg-2 {
+        transform: translateY(-40px);
+    }
 }
 
 .show__details {
@@ -78,9 +79,9 @@ body:before {
 }
 
 .show__menu {
-    -webkit-flex: 1;
     flex: 1;
-    min-width: 450px;
+    max-width: 600px;
+    height: 750px;
     background-color: $color_white--2;
     box-shadow: 5px 0px 10px $color-black--1;
 
@@ -95,8 +96,10 @@ body:before {
     }
 
     .menu__nav-wrapper {
+        height: 750px;
+        overflow: auto;
         padding-left: 0;
-        padding-top: 50px;
+        margin-top: 0;
     }
 
     .menu__item {

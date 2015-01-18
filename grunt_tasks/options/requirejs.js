@@ -8,14 +8,11 @@ module.exports = {
             optimize: 'uglify2',
             useStrict: true,
             skipDirOptimize: false,
-            preserveLicenseComments: true,
+            preserveLicenseComments: false,
             include: [
                 'dst',
                 'dust',
-                'text',
-                'async',
-                'goog',
-                'noext'
+                'text'
             ],
             out: 'target/js/mediacenter.min.js'
         }

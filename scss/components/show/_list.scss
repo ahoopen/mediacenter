@@ -1,15 +1,15 @@
 .mm-wrapper {
-    height: 600px;
+//    height: 600px;
 }
 .show__item {
     display: block;
 
-    &:hover {
+    &.selected {
         background-color: $color-red--1;
     }
 
-    &:hover .show__list-title,
-    &:hover .show__list-genre {
+    &.selected .show__list-genre,
+    &.selected .show__list-title {
         color: $color-white--1 !important;
     }
 }

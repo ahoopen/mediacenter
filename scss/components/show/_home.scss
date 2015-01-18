@@ -1,0 +1,39 @@
+.show__home {
+    display: flex;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    margin-top: 8rem;
+
+    .show__home-menu {
+        flex: 1;
+        max-width: 450px;
+        background-color: $color_white--2;
+        box-shadow: 5px 0px 10px $color-black--1;
+
+        .menu__nav-wrapper {
+            padding-left: 0;
+            padding-top: 50px;
+        }
+
+        .menu__item {
+            padding-top: 35px;
+            padding-bottom: 35px;
+            padding-left: 40px;
+            list-style: none;
+            float: left;
+            width: 100%;
+            border-bottom: 3px solid $color-grey--3;
+            @include font-size(24);
+
+            strong {
+                padding-left: 30px;
+            }
+        }
+    }
+
+    .show__home-image {
+        flex: 1;
+        min-width: 500px;
+        max-width: 700px;
+    }
+}
