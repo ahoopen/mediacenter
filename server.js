@@ -38,6 +38,7 @@ var app = express();
 // serve static files
 app.use(express.static(path.join(__dirname, 'target')));
 app.use(express.static(path.join(__dirname, 'cache')));
+app.use(express.static(path.join(__dirname, 'client')));
 
 app.set('views', __dirname + '/client');
 app.engine('html', require('ejs').renderFile);
@@ -54,6 +55,41 @@ var io = require('socket.io')(server);
 
 server.listen(port, function () {
     console.log("Listening on " + port);
+});
+
+io.on('connect', function (socket) {
+
+    socket.on('screen', function () {
+        console.log('screen connected! ');
+        socket.type = 'screen';
+
+        ss = socket;
+    });
+
+    socket.on('remote', function () {
+        console.log('remote control connected :) ');
+        socket.type = 'remote';
+    });
+
+    socket.on('remote_control_action', function (data) {
+        console.log('remote control action!');
+
+        if (socket.type == 'remote') {
+            if (data.action === 'next') {
+                if ( typeof ss != undefined) {
+                    console.log('remote next');
+                    ss.emit('remote:next');
+                }
+            }
+            if (data.action === 'previous') {
+                if (typeof ss != undefined) {
+                    console.log('remote previous');
+                    ss.emit('remote:previous');
+                }
+            }
+        }
+    });
+
 });
 
 //remoteControle.init(io);

@@ -6,8 +6,10 @@ requirejs.config({
 
     paths: {
 
-        'raspberry-pi-mediacenterjs': 'mediacenter/module',
-        'home' : 'mediacenter/home/module',
+        'raspberry-pi-mediacenterjs': 'module',
+
+        'component-remote-control' : 'modules/remote/module',
+
 
         'backbone': '../bower_components/backbone/backbone',
         'backbone-patterns': '../bower_components/backbone-patterns/dist/backbone-patterns',
@@ -29,7 +31,10 @@ requirejs.config({
         'async': '../bower_components/requirejs-plugins/src/async',
         'goog': '../bower_components/requirejs-plugins/src/goog',
         'noext': '../bower_components/requirejs-plugins/src/noext',
-        'propertyParser': '../bower_components/requirejs-plugins/src/propertyParser'
+        'propertyParser': '../bower_components/requirejs-plugins/src/propertyParser',
+
+        /* Gestures */
+        'gestureManager' : 'utils/gesture'
     },
 
     shim: {
@@ -65,7 +70,7 @@ requirejs.config({
         },
 
         'raspberry-pi-mediacenterjs': {
-            deps: ['backbone', 'backbone-patterns','es5-shim', 'jquery']
+            deps: ['backbone', 'backbone-patterns','es5-shim', 'jquery', 'gestureManager']
         }
     }
 });

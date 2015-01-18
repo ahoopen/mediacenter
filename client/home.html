@@ -2,12 +2,31 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="/socket.io/socket.io.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-        <script type="text/javascript" src="/vendor/jquery.mmenu.min.all.js"></script>
+        <script type="text/javascript" src="/vendor/jquery.mCustomScrollbar.js"></script>
         <link type="text/css" rel="stylesheet" href="/css/mediacenter.css">
+        <link type="text/css" rel="stylesheet" href="/vendor/jquery.mCustomScrollbar.css">
+        <script type="text/javascript" src="js/mediacenter/remote/control.js"></script>
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         <script type="text/javascript">
+
+            var socket = io.connect(window.location.host);
+
+            socket.on('connect', function() {
+                socket.emit('screen');
+            });
+
+            remoteControle.init();
+//            remoteControle.next( function() {
+//
+//            });
+//            remoteControle.previous( function() {
+//
+//            });
+
             $(document).ready(function() {
+
 
                 function addRule(sheet, selector, styles) {
                     if (!sheet) return;
@@ -15,11 +34,26 @@
                     if (sheet.addRule) return sheet.addRule(selector, styles);
                 }
 
+                var start = null;
+
                 $.ajax( {
                     url : 'api/shows'
                 }).done( function(result) {
+
+                    var li = $('<li/>').attr('data-menu-list','start');
+                    $('.menu__nav-wrapper').append(li);
+
+                    var i = 0;
                     result.forEach( function(show) {
+                        i++;
                         var li = $('<li/>').addClass('show__item');
+                        if( start == null ) {
+                            li.addClass('selected');
+                            start = false;
+                        }
+
+                        li.attr('data-bg', show.background);
+                        li.attr('data-poster', show.poster);
 
                         var list ='<div class="show__list">' +
                             '<div class="show__list-image">' +
@@ -33,17 +67,31 @@
 
                         var item = $(li).html(list);
                         item.hover( function() {
-                            console.log('hover!',show.background);
                             var bg = show.background;
                             addRule(document.styleSheets[0], "body:before", "background: url('" + bg + "'); ");
                             $('.show__poster-img').attr('src', show.poster);
                         });
                         $('.menu__nav-wrapper').append(item);
+
                     });
 
+                    var li = $('<li/>').attr('data-menu-list','end');
+                    $('.menu__nav-wrapper').append(li);
 
+                    $('#menu').mCustomScrollbar( {
+                        axis : 'y',
+                        theme: 'minimal-dark',
+                        scrollbarPosition: 'outside',
+                        autoHideScrollbar: true,
+                        scrollInertia: 20
+                    });
 
-
+//                    setTimeout( function() {
+//                        $("#menu__nav-wrapper").mmenu({
+//                            classes: "mm-light",
+//                            offCanvas : false
+//                        });
+//                    }, 4000);
 
                 });
 
@@ -51,14 +99,14 @@
         </script>
     </head>
     <body>
-        <div class="home__container">
+        <div class="home__container panel--bg-2">
             <div class="show__menu">
-                <nav id="menu">
+                <nav id="menu" data-mcs-theme="minimal-dark">
                     <ul class="menu__nav-wrapper"></ul>
                 </nav>
             </div>
 
-            <div class="show__poster">
+            <div class="show__home-poster">
                 <img class="show__poster-img" src="/10369.29.jpg" />
             </div>
         </div>

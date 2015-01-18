@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--<script data-main='js/config' src="vendor/require.js"></script>-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="/vendor/jquery.mmenu.min.all.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="/css/mediacenter.css">
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#menu").mmenu({
+                    classes: "mm-light",
+                    offCanvas : false
+                });
+
+                $.ajax( {
+                    url : 'api/shows'
+                }).done( function(result) {
+                    console.log(result);
+                    result.forEach( function(show) {
+
+                    });
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+
+
+        <div class="home__container">
+
+            <div class="show__menu">
+                <div class="show__menu-titel">
+                    <h1 class="title">Homeland</h1>
+                </div>
+                <nav id="menu">
+                    <ul class="menu__nav-wrapper">
+                        <li class="menu__item icon-play icon-2x"><strong>Play: S1 / Ep 1</strong></li>
+                        <li class="menu__item icon-heart icon2x"><strong>Add to queue</strong></li>
+                        <li class="menu__item icon-list icon-2x">
+                            <strong><a class="mm-subopen mm-fullsubopen" href="#list">All seasons and episodes</a></strong>
+                        </li>
+                    </ul>
+
+                <!-- The menu -->
+
+                    <ul id="list">
+                        <li class="menu__item"><a href="#list1">Season 1</a>
+                            <ul id="list1">
+                                <li><a href="/about/history">Pilot</a></li>
+                                <li><a href="/about/team">Grace</a></li>
+                                <li><a href="/about/address">Clean skin</a></li>
+                                <li><a href="/about/history">Semper I</a></li>
+                                <li><a href="/about/team">Blind Spot</a></li>
+                                <li><a href="/about/address">Episode 3</a></li>
+                                <li><a href="/about/history">Episode 1</a></li>
+                                <li><a href="/about/team">Episode 2</a></li>
+                                <li><a href="/about/address">Episode 3</a></li>
+                                <li><a href="/about/history">Episode 1</a></li>
+                                <li><a href="/about/team">Episode 2</a></li>
+                                <li><a href="/about/address">Episode 3</a></li>
+                                <li><a href="/about/history">Episode 1</a></li>
+                                <li><a href="/about/team">Episode 2</a></li>
+                                <li><a href="/about/address">Episode 3</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="menu__item"><a href="#list2">Season 2</a>
+                            <ul id="list2">
+                                <li><a href="/about/history">Episode 1</a></li>
+                                <li><a href="/about/team">Episode 2</a></li>
+                                <li><a href="/about/address">Episode 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu__item"><a href="#list3">Season 3</a>
+                            <ul id="list3">
+                                <li><a href="/about/history">Episode 1</a></li>
+                                <li><a href="/about/team">Episode 2</a></li>
+                                <li><a href="/about/address">Episode 3</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="show__poster">
+                <img src="/10369.29.jpg" />
+            </div>
+
+            <div class="show__details">
+                <div class="show__details-synopsis">
+                    <h1 class="heading">Synopsis</h1>
+                    <p class="paragraph">When Marine Nicolas Brody is hailed as a hero after he returns home from eight years of captivity in Iraq, intelligence officer Carrie Mathison is the only one who suspects that he may have been "turned".</p>
+                </div>
+                <div class="show__details-actors">
+                    <h1 class="heading">Actors</h1>
+                    <p class="paragraph">Claire Danes, Mandy Patinkin, Damian Lewis</p>
+                </div>
+                <div class="show__details-category">
+                    <h1 class="heading">Categories</h1>
+                    <p class="paragraph">Drama | Mystery | Thriller</p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </body>
+</html>

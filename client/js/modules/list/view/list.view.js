@@ -1,8 +1,7 @@
-/* globals Backbone, define, require */
+/* globals Backbone, define, require, io */
 
 define([
-
-    'dst!mediacenter/home/template/home.dust'
+    'dst!modules/list/template/list.dust'
 
 ], function () {
 
@@ -10,10 +9,11 @@ define([
 
     return Backbone.View.extend({
 
-        template: require('dst!mediacenter/home/template/home.dust'),
+        template: require('dst!modules/list/template/list.dust'),
 
         events: {
-            'click': 'close'
+            'click remote__control-start': 'start',
+            'click remote__control-pause': 'pause'
         },
 
         initialize: function () {
@@ -23,11 +23,18 @@ define([
         },
 
         getTemplateData: function () {
-            return {};
+            return {
+                title: 'Game of Thrones - Valar Dohaeris 222'
+            };
         },
 
         onRenderComplete: function () {
-            console.log('render complete');
+            this._assignGestureListeners();
+        },
+
+        render: function () {
+            Backbone.View.prototype.render.apply(this, arguments);
+            return this;
         },
 
         remove: function () {
