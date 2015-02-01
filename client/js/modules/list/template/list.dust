@@ -1,17 +1,9 @@
-<ul>
-    <div data-menu-list="start"></div>
-    {#items}
-        <li class="show__item" data-bg="{background}" data-poster="{poster}">
-            <div class="show__list">
-                <div class="show__list-image">
-                    <img width="100" src="{image}"/>
-                </div>
-                <div class="show__list-description">
-                    <div class="show__list-title">{title}</div>
-                    <div class="show__list-genre">{genre}</div>
-                </div>
-            </div>
-        </li>
-    {/items}
-    <div data-menu-list="end"></div>
-</ul>
+<div class="show__menu">
+    <nav id="menu" data-mcs-theme="minimal-dark">
+        <ul class="menu__nav-wrapper">
+            <li data-menu-list="start"></li>
+            <div class="item__list"></div>
+            <li data-menu-list="end"></li>
+        </ul>
+    </nav>
+</div>

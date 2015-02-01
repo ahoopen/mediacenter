@@ -1,0 +1,9 @@
+<div class="item__show--block">
+    <div class="item__show--image">
+        <img width="100" src="{image}" />
+    </div>
+    <div class="item__show--description">
+        <div class="item__show--title">{title}</div>
+        <div class="item__show--genre">{genre}</div>
+    </div>
+</div>
