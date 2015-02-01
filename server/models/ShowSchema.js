@@ -271,4 +271,44 @@ ShowSchema.statics.episode = function (showId, season_number, episode_number) {
     return promise;
 };
 
+
+/**
+ * Return an episode of a tv show
+ *
+ * @param showId
+ * @param season_number
+ * @param episode_number
+ * @returns {Mongoose.Promise}
+ */
+ShowSchema.statics.episodeList = function (showId, season_number) {
+    var promise = new mongoose.Promise;
+
+    this.findOne({ref: showId})
+        .select('ref episodes')
+        .populate({
+            path: 'episodes',
+            match: {
+                season: parseInt(season_number)
+            }
+        })
+        .exec(function (err, result) {
+            if (err) {
+                promise.error(err);
+            }
+
+            result.episodes = result.episodes.sort(function (a, b) {
+                if (a.number < b.number) {
+                    return -1;
+                } else if (a.number > b.number) {
+                    return 1;
+                }
+                return 0;
+            });
+
+            promise.complete(result);
+        });
+
+    return promise;
+};
+
 exports.Show = mongoose.model('Show', ShowSchema);

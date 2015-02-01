@@ -18,4 +18,8 @@ module.exports = function (app) {
     app.get('/indexing', function (request, response) {
         response.render('indexing.html');
     });
+
+    app.get('/episode', function (request, response) {
+        response.render('index2.html');
+    });
 };

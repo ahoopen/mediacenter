@@ -12,7 +12,7 @@ module.exports = function (app) {
     app.get('/api/shows', function (request, response) {
         Shows.getAll()
             .then( function(result) {
-                response.json(result);
+                response.json( result );
             }, function(err) {
                 //
             });
