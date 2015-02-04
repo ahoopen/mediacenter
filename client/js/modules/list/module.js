@@ -1,14 +1,12 @@
-/* globals define, $, require */
+/* globals define, require */
 
 define('component-list', [
     'modules/list/views/list.main.view'
 ], function () {
     'use strict';
 
-    var ItemList = require('modules/list/views/list.main.view'),
-        list = new ItemList();
+    console.log('list component..');
+    var ItemList = require('modules/list/views/list.main.view');
 
-    $(document.body).append(list.render().el);
-
-    return list;
+    return ItemList;
 });

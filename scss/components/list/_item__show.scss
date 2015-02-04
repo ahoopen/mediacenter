@@ -1,0 +1,46 @@
+.item__show {
+    display: block;
+
+    &.selected {
+        background-color: $color-red--1;
+    }
+
+    &.selected .item__show--genre,
+    &.selected .item__show--title {
+        color: $color-white--1 !important;
+    }
+}
+
+
+.item__show--block {
+    display: flex;
+    align-items: center;
+    border-top: 2px solid $color-grey--3;
+}
+
+.item__show--image {
+    display: inline-block;
+    width: 100px;
+    height: 150px;
+}
+
+.item__show--description {
+    display: inline-block;
+    padding-left: 20px;
+
+
+    .item__show--title {
+        font-family: 'Montserrat',sans-serif;
+        color: $color_black--1;
+        font-weight: 700;
+        text-transform: capitalize;
+        @include font-size(30);
+        padding-bottom: 4px;
+    }
+
+    .item__show--genre {
+        font-family: 'Montserrat',sans-serif;
+        color: $color_grey--2;
+        @include font-size(18);
+    }
+}

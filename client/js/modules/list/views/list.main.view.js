@@ -32,6 +32,7 @@ define([
 
             this.socket = io.connect(window.location.host);
             this.listenTo(this, 'render-complete', this.onRenderComplete);
+            this.render();
         },
 
         /**

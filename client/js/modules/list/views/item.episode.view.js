@@ -10,19 +10,19 @@ define([
 
         tagName: 'li',
 
-        template : require('dst!modules/list/template/item.episode.dust'),
+        template: require('dst!modules/list/template/item.episode.dust'),
 
-        events : {
-            'click .item__episode--title' : 'test'
+        events: {
+            'click .item__episode--title': 'test'
         },
 
-        initialize : function() {
+        initialize: function () {
             this.$el.addClass('item__episode');
         },
 
         getTemplateData: function () {
             return {
-                title : this.model.get('title')
+                title: this.model.get('title')
             };
         },
 
@@ -31,8 +31,8 @@ define([
             return this;
         },
 
-        test : function() {
-            console.log('test', this.model.get('ref') );
+        test: function () {
+            Backbone.history.navigate('/show/homeland', {trigger: true});
         }
     });
 });
