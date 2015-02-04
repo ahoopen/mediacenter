@@ -6,8 +6,6 @@ define('component-remote-control', [
 ], function () {
     'use strict';
 
-    console.log('component remote control');
-
     var remoteView = require('modules/remote/views/remote.view');
     return remoteView;
 });

@@ -85,14 +85,6 @@ define([
             };
         },
 
-        start: function () {
-            console.log('start');
-        },
-
-        pause: function () {
-            //socket.emit('remote:pause');
-        },
-
         onRenderComplete: function () {
             this._assignGestureListeners();
         },
