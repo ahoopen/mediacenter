@@ -1,0 +1,84 @@
+//.page {
+//    position: absolute;
+//    top: 0;
+//    right: 0;
+//    bottom: 0;
+//    left: 0;
+//    padding: 1em;
+//    text-align: center;
+//    margin: 7rem;
+////    transition: transform 0.5s ease;
+////    transform: translate3d(100%, 0, 0);
+//}
+
+.page {
+    position: absolute;
+//    top: 0;
+//    left: 0;
+//    visibility: hidden;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    margin: 5rem;
+}
+
+.page a {
+    color: white;
+}
+
+.page.is-visible {
+    transform: translate3d(0, 0, 0);
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animated.infinite {
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+}
+
+.pt-page-scaleUp {
+    animation: scaleUp 1s ease both;
+    transform-style: preserve-3d;
+}
+
+.pt-page-moveToLeft {
+    animation: moveToLeft .7s ease-in-out both;
+    transform-style: preserve-3d;
+}
+
+.pt-page-moveToBottom {
+    animation: moveToBottom .7s ease-in-out both;
+    transform-style: preserve-3d;
+}
+
+@keyframes moveToBottom {
+    from { }
+    to { transform: translateY(100%); }
+}
+
+@keyframes scaleUp {
+    from { opacity: 0; transform: scale(.8); }
+}
+
+@keyframes moveToLeft {
+    from { }
+    to { transform: translateX(-120%); }
+}

@@ -1,8 +1,11 @@
 @import "remote/remote";
 
-@import "show/show";
+@import "show/show"; // to be deleted
+@import "show/base";
+@import "page/base";
 @import "show/list";
 
 @import "loading/loading";
 @import "menu/jquery.mmenu.all";
 @import "transitions/animation";
+@import "list/base";

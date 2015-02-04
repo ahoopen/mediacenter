@@ -1,14 +1,23 @@
-/* globals define, $ */
+/* globals define, require, $, window */
 
 define('raspberry-pi-mediacenterjs', [
     'routes/router',
-    'component-remote-control'
-], function (MainRouter, remote) {
+    'modules/page/views/app.view'
+    //'component-shows',
+    //'component-list'
+], function (MainRouter) {
     'use strict';
 
-    var remoteCtrl = new remote();
-    console.log('routes..init');
+    var app = require('modules/page/views/app.view'),
+        main = new app();
+
+
+        window.app = main;
+
+    $(document.body).append(main);
+
+    //var remoteCtrl = new remote();
     MainRouter.initialize();
 
-    $('.remote-control').append( remoteCtrl.el);
+    //$('.remote-control').append( remoteCtrl.el);
 });

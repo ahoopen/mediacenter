@@ -22,4 +22,8 @@ module.exports = function (app) {
     app.get('/episode', function (request, response) {
         response.render('index2.html');
     });
+
+    app.get('/show', function (request, response) {
+        response.render('show.html');
+    });
 };

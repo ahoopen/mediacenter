@@ -8,7 +8,9 @@ requirejs.config({
 
         'raspberry-pi-mediacenterjs': 'module',
 
-        'component-remote-control' : 'modules/remote/module',
+        'component-remote-control': 'modules/remote/module',
+        'component-list': 'modules/list/module',
+        'component-shows': 'modules/show/module',
 
 
         'backbone': '../bower_components/backbone/backbone',
@@ -22,7 +24,7 @@ requirejs.config({
 
         /* Jquery */
         'jquery': '../bower_components/jquery/dist/jquery',
-
+        'jquery-mousewheel': '../bower_components/jquery-mousewheel/jquery.mousewheel',
         'es5-shim': '../bower_components/es5-shim/es5-shim',
         'promise': '../bower_components/promise/Promise',
         'dustjs-linkedin-helpers': '../bower_components/dustjs-linkedin-helpers/dist/dust-helpers',
@@ -34,7 +36,10 @@ requirejs.config({
         'propertyParser': '../bower_components/requirejs-plugins/src/propertyParser',
 
         /* Gestures */
-        'gestureManager' : 'utils/gesture'
+        'gestureManager': 'utils/gesture',
+
+        /* */
+        'jquery.mCustomScrollbar': '../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min'
     },
 
     shim: {
@@ -46,6 +51,10 @@ requirejs.config({
         'backbone': {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
+        },
+
+        'jquery.mCustomScrollbar': {
+            deps: ['jquery']
         },
 
         'backbone-patterns': {
@@ -70,7 +79,7 @@ requirejs.config({
         },
 
         'raspberry-pi-mediacenterjs': {
-            deps: ['backbone', 'backbone-patterns','es5-shim', 'jquery', 'gestureManager']
+            deps: ['backbone', 'backbone-patterns', 'es5-shim', 'jquery', 'gestureManager', 'jquery.mCustomScrollbar']
         }
     }
 });

@@ -5,12 +5,15 @@ define( function () {
 
     return Backbone.View.extend({
 
+        subscriptions : {
+            'SHOW__BACKGROUND' : 'setBackground'
+        },
+
         initialize: function () {
             //this.router = new app.Router();
         },
 
         render2: function (options) {
-            console.log( 'page render...');
             options = options || {};
 
             if (options.page === true) {
@@ -20,14 +23,31 @@ define( function () {
             return this;
         },
 
+        setBackground : function(bgUrl) {
+            var sheet = document.styleSheets[0],
+                selector = 'body:before',
+                styles = 'background: url("' + bgUrl + '");';
+
+            var animate = function() {
+                if (sheet.insertRule) {
+                    return sheet.insertRule(selector + ' {' + styles + '}', sheet.cssRules.length);
+                }
+                if (sheet.addRule) {
+                    return sheet.addRule(selector, styles);
+                }
+            };
+
+            _.delay(animate, 500);
+        },
+
         transitionIn: function (callback) {
             var view = this;
 
             var transitionIn = function () {
                 //view.$el.addClass('is-visible');
-                view.$el.addClass('iosSlideInRight animated');
+                view.$el.addClass('pt-page-scaleUp');
                 view.$el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd animationend', function () {
-                    view.$el.removeClass('iosSlideInRight animated');
+                    view.$el.removeClass('pt-page-scaleUp');
                     if (_.isFunction(callback)) {
                         callback();
                     }
@@ -40,12 +60,11 @@ define( function () {
         transitionOut: function (callback) {
             var view = this;
 
-            console.log('transition out...');
-            view.$el.addClass('iosFadeLeft animated');
+            view.$el.addClass('pt-page-moveToBottom');
             //view.$el.removeClass('iosSlideInRight animated');
             //view.$el.removeClass('is-visible');
-            view.$el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd animationend', function () {
-                view.$el.removeClass('iosFadeLeft animated');
+            view.$el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd', function () {
+                view.$el.removeClass('pt-page-moveToBottom');
                 if (_.isFunction(callback)) {
                     callback();
                 }
