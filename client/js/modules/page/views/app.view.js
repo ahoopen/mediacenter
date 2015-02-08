@@ -22,7 +22,7 @@ define( [
                 });
             }
 
-            next.render2({page: true});
+            next.renderPage({page: true});
             this.$el.append(next.$el);
             next.transitionIn();
             this.currentPage = next;

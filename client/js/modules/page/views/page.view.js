@@ -13,7 +13,7 @@ define( function () {
             //this.router = new app.Router();
         },
 
-        render2: function (options) {
+        renderPage: function (options) {
             options = options || {};
 
             if (options.page === true) {

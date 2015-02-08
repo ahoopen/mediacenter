@@ -38,6 +38,7 @@ var app = express();
 // serve static files
 app.use(express.static(path.join(__dirname, 'target')));
 app.use(express.static(path.join(__dirname, 'cache')));
+app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'client')));
 
 app.set('views', __dirname + '/client');
@@ -76,15 +77,20 @@ io.on('connect', function (socket) {
 
         if (socket.type == 'remote') {
             if (data.action === 'next') {
-                if ( typeof ss != undefined) {
-                    console.log('remote next');
+                if (typeof ss != undefined) {
+                    console.log('SERVER -- remote:next');
                     ss.emit('remote:next');
                 }
             }
             if (data.action === 'previous') {
                 if (typeof ss != undefined) {
-                    console.log('remote previous');
+                    console.log('SERVER -- remote:previous');
                     ss.emit('remote:previous');
+                }
+            }
+            if (data.action === 'enter') {
+                if( typeof  ss != undefined) {
+                    ss.emit('remote:enter');
                 }
             }
         }

@@ -29,12 +29,24 @@ var ListController = {
     episodeItems: function (showID, season_number) {
         var self = this;
 
-        return new Promise( function(resolve, reject) {
-           Show.episodeList(showID, season_number).then( function(items) {
-               resolve( self.createListResponse('EPISODE_ITEM', items.episodes) );
-           }, function() {
-               reject();
-           });
+        return new Promise(function (resolve, reject) {
+            Show.episodeList(showID, season_number).then(function (items) {
+                resolve(self.createListResponse('EPISODE_ITEM', items.episodes));
+            }, function () {
+                reject();
+            });
+        });
+    },
+
+    showControls: function (showId) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            Show.controls(showId).then(function (data) {
+                resolve(self.createListResponse('SHOW_CONTROLS', data));
+            }, function () {
+                reject();
+            });
         });
     },
 

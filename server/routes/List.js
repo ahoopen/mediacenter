@@ -18,7 +18,15 @@ module.exports = function (app) {
             season_number = request.params.season_number;
 
         ListService.episodeItems(showID, season_number).then(function (data) {
-            response.json( data );
+            response.json(data);
+        });
+    });
+
+    app.get('/api/list/shows/:show_id/controls', function (request, response) {
+        var showID = request.params.show_id;
+
+        ListService.showControls(showID).then(function (data) {
+            response.json(data);
         });
     });
 

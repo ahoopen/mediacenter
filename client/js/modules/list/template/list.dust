@@ -1,9 +1,7 @@
-<div class="show__menu">
-    <nav id="menu" data-mcs-theme="minimal-dark">
-        <ul class="menu__nav-wrapper">
-            <li data-menu-list="start"></li>
-            <div class="item__list"></div>
-            <li data-menu-list="end"></li>
-        </ul>
-    </nav>
-</div>
+<nav id="menu" data-mcs-theme="minimal-dark">
+    <ul class="menu__nav-wrapper">
+        <li data-menu-list="start"></li>
+        <div class="item__list"></div>
+        <li data-menu-list="end"></li>
+    </ul>
+</nav>

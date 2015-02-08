@@ -9,7 +9,7 @@ module.exports = {
     },
 
     js : {
-        files : 'client/js/**/*.js',
+        files : ['client/js/**/*.js', 'client/js/**/*.dust'],
         tasks : ['jshint', 'requirejs']
     }
 };

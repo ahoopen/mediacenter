@@ -3,13 +3,15 @@ define([
     'dst!modules/list/template/list.empty.dust',
 
     'modules/list/views/item.show.view',
-    'modules/list/views/item.episode.view'
+    'modules/list/views/item.episode.view',
+    'modules/list/views/item.show.controls.view'
 ], function () {
 
     'use strict';
 
     var ShowItemView = require('modules/list/views/item.show.view'),
-        EpisodeItemView = require('modules/list/views/item.episode.view');
+        EpisodeItemView = require('modules/list/views/item.episode.view'),
+        ShowControlsItemView = require('modules/list/views/item.show.controls.view');
 
     return Backbone.View.extend({
 
@@ -41,7 +43,7 @@ define([
             }.bind(this));
 
             this.$el.children().first().addClass('selected');
-            this.setElement(this.$el.children() );
+            this.setElement(this.$el.children());
 
             Backbone.View.prototype.render.apply(this, arguments);
 
@@ -83,6 +85,11 @@ define([
                     break;
                 case 'EPISODE_ITEM' :
                     itemView = new EpisodeItemView({
+                        model: model
+                    });
+                    break;
+                case 'SHOW_CONTROLS' :
+                    itemView = new ShowControlsItemView({
                         model: model
                     });
                     break;

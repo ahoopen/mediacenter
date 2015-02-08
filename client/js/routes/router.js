@@ -1,10 +1,10 @@
-/* globals define, require, Backbone */
+/* globals define, require, $, Backbone */
 
 define([
     'backbone-patterns',
     'component-shows',
-    'component-list'
-    //'component-remote-control',
+    'component-list',
+    'component-remote-control',
 ], function () {
 
     'use strict';
@@ -30,8 +30,15 @@ define([
         console.log('MainRouter / initialize');
 
         router.on('route:remote_control', function () {
-            console.log('testddda');
-            //console.log( componentRemoteControl );
+            var remote = require('component-remote-control'),
+                control = new remote();
+
+            console.log( control.el);
+
+            $(document.body).append(control.el);
+            //window.app.goto(control);
+
+
         });
 
         router.on('route:home', function () {
@@ -39,11 +46,6 @@ define([
                 list = new ItemList();
 
             window.app.goto(list);
-
-             //this.render(list);
-            //$(document.body).append(list.render().el);
-            //console.log('home..', listComponent);
-            //$('.remote-control').append( listComponent.el);
         });
 
         router.on('route:show', function (params) {
@@ -54,20 +56,7 @@ define([
                 });
 
 
-            console.log( 'overview!:', showOverview);
-
             window.app.goto(showOverview);
-            //
-            //console.log('router params..:', params);
-            ////console.log('home..', listComponent);
-            //var overview = require('component-shows'),
-            //    showOverview = new overview.view({
-            //        model: new overview.model()
-            //    });
-            //
-            //this.render(showOverview);
-            ////$(document.body).append(showOverview.el);
-            //$('.remote-control').append( listComponent.el);
         });
 
         router.on('route:season', function() {

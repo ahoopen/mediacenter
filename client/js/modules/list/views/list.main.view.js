@@ -6,14 +6,13 @@ define([
     'modules/list/model/list.show.model',
     'modules/list/model/list.episode.model',
 
-    'modules/list/views/item.list.view'
+    'modules/list/views/item.list.view',
+    'modules/page/views/page.view'
 ], function () {
 
     'use strict';
 
-    var ItemList = require('modules/list/views/item.list.view'),
-        //ShowItemModel = require('modules/list/model/list.show.model');
-    EpisodeItemModel = require('modules/list/model/list.episode.model');
+    var ItemList = require('modules/list/views/item.list.view');
 
     return Backbone.View.extend({
 
@@ -27,7 +26,7 @@ define([
 
         initialize: function () {
             this.list = new ItemList({
-                model: new EpisodeItemModel()
+                model: this.model
             });
 
             this.socket = io.connect(window.location.host);
@@ -40,9 +39,11 @@ define([
          */
         onRenderComplete: function () {
             this.socket.on('connect', function () {
+                console.log('list socket connected!');
                 this.connected = true;
                 this.next();
                 this.previous();
+                this.enter();
             }.bind(this));
         },
 
@@ -87,7 +88,6 @@ define([
             var self = this;
 
             this.onSocketEvent('remote:previous', function () {
-
                 var current = $('.selected', self.$el);
                 current.removeClass('selected');
 
@@ -100,8 +100,8 @@ define([
         },
 
         enter: function () {
-            this.onSocketEvent('enter', function () {
-                console.log($('.selected '));
+            this.onSocketEvent('remote:enter', function () {
+                console.log('goto next page!');
             });
         },
 

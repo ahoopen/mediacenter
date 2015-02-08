@@ -14,9 +14,9 @@ define( function() {
         this.gestures = [];
 
         // double tap
-        this.pressDuration = 300;
+        this.pressDuration = 200;
         this.doubleTapInterval = 300;
-        this.motionThreshold = 10;
+        this.motionThreshold = 30;
         this.cancel = false;
         this.motion = false;
         this.previousElement = null;

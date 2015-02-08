@@ -2,7 +2,6 @@ body {
     position: absolute;
     top: 0; bottom: 0; left: 0; right: 0;
     background-color: $color-black--1;
-    transform: translateZ(0);
 }
 body:before {
     content: "";
@@ -13,11 +12,10 @@ body:before {
     height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
 
     /* don't forget to use the prefixes you need */
-    transition: background 1s linear;
+    transition: background 1s ease-in;
     transform: scale(5);
     transform-origin: top left;
     filter: blur(2px);
-    transform-style: preserve-3d;
 }
 
 .show__overview {
@@ -31,39 +29,84 @@ body:before {
     box-shadow: 2px 0px 10px #666;
     z-index: 3;
     min-width: 350px;
+    max-height: 790px;
+
+    .show__overview--title {
+        height: 200px;
+        padding: 40px;
+        text-transform: capitalize;
+        font-weight: 700;
+        margin-top: 45px;
+        font-family: 'Montserrat',sans-serif;
+        @include font-size(58);
+        color : $color-black--1;
+    }
+
+    .show__overview--meta {
+        font-family: 'Open-sans', sans-serif;
+        font-weight: bold;
+        border-top: 3px solid $color-grey--3;
+        background-color: #fff;
+        padding: 40px;
+        padding-top: 25px;
+        height: 51px;
+
+        ul {
+            display: inline;
+            list-style-type: none;
+
+            li {
+                float: left;
+                width: 33%;
+                text-align: center;
+
+            }
+
+            span {
+                display: inherit;
+                margin-bottom: 6px;
+                text-align: center;
+                @include font-size(50);
+            }
+        }
+    }
 }
 .show__overview--image {
     flex: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 450px;
+    box-shadow: 3px 0px 30px #000;
+    z-index: 1;
+    max-height: 790px;
+
+    img {
+        height: 790px;
+    }
 }
 
 .show__overview--info {
     flex: 1;
-    width: 600px;
     background-color: $color_black--1;
-    z-index: 4;
-    padding-left: 30px;
-    margin-top: 20px;
-    box-shadow: -2px 0px 10px #666;
+    padding: 40px;
+    max-height: 790px;
 
     h1 {
         font-family: 'Montserrat',sans-serif;
         @include font-size(36);
         color : $color-white--1;
+        padding-top: 20px;
+        padding-bottom: 30px;
     }
 
     p {
-        font-family: 'PT Serif',sans-serif;
+        font-family: 'Open-sans', sans-serif;
         @include font-size(20);
         color: $color_grey--2;
         line-height: 30px;
+        margin-bottom: 15px;
     }
 }
 
 .show__info--synopsis {
-
+    margin-top: 25px;
 }
 .show__info--actors {
 

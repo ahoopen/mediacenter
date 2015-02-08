@@ -1,6 +1,25 @@
 <div class="show__overview">
     <div class="show__overview--menu">
-        <div class="show__overview--title">{title}</div>
+        <div class="show__overview--title">
+            <h1>{title}</h1>
+        </div>
+        <div class="show__overview--options"></div>
+        <div class="show__overview--meta">
+            <ul>
+                <li>
+                    <span class="fa fa-clock-o"></span>
+                    00:45
+                </li>
+                <li>
+                    <span class="fa fa-star"></span>
+                    4 out of 5
+                </li>
+                <li>
+                    <span class="fa fa-bars"></span>
+                    4
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="show__overview--image">
         <img class="show__poster-img" src="{image}" />

@@ -17,10 +17,6 @@ define([
         socket: null,
         gesture: null,
 
-        events: {
-            'click remote__control-start': 'start',
-            'click remote__control-pause': 'pause'
-        },
 
         initialize: function () {
             Backbone.View.prototype.initialize.apply(this, arguments);
@@ -77,12 +73,6 @@ define([
                     self._sendRemoteAction('doubletap');
                 });
             }
-        },
-
-        getTemplateData: function () {
-            return {
-                title: 'Game of Thrones - Valar Dohaeris 222'
-            };
         },
 
         onRenderComplete: function () {

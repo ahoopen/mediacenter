@@ -2,7 +2,8 @@ body{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 //    font-family: 'Roboto', sans-serif;
-    font-family: PT Serif, sans-serif;
+//    font-family: PT Serif, sans-serif;
+//    font-family: 'ProximaNova', sans-serif;
 }
 
 @font-face {
@@ -10,6 +11,27 @@ body{
     font-style: normal;
     font-weight: 400;
     src: ('../assets/fonts/Montserrat/Montserrat-Regular');
+}
+
+@font-face {
+    font-family: "ProximaNova";
+    font-style: normal;
+    font-weight: 400;
+    src: ('../assets/fonts/nova/ProximaNova-Regular.otf');
+}
+
+@font-face {
+    font-family: "Yoga";
+    font-style: normal;
+    font-weight: normal;
+    src: ('../assets/fonts/yogo/YogaSansWebPro.woff');
+}
+
+@font-face {
+    font-family: "Open-sans";
+    font-style: normal;
+    font-weight: normal;
+    src: ('../assets/fonts/open-sans/OpenSans-Reqular');
 }
 
 @font-face {

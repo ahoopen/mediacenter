@@ -111,7 +111,7 @@ ShowSchema.statics.isNew = function (show) {
                 promise.error(err);
             }
 
-            if(result === null) {
+            if (result === null) {
                 promise.complete(show);
             } else {
                 promise.error();
@@ -167,7 +167,7 @@ ShowSchema.statics.hasEpisode = function (showId, season_number, episode_number)
 ShowSchema.statics.getShow = function (title) {
     var promise = new mongoose.Promise;
 
-    this.findOne({title: title.toLowerCase() })
+    this.findOne({title: title.toLowerCase()})
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);
@@ -306,6 +306,76 @@ ShowSchema.statics.episodeList = function (showId, season_number) {
             });
 
             promise.complete(result);
+        });
+
+    return promise;
+};
+
+ShowSchema.statics.firstEpisode = function (showId) {
+    var promise = new mongoose.Promise;
+
+    this.findOne({ref: showId})
+        .populate('episodes')
+        .exec(function (err, result) {
+            if (err) {
+                promise.error(err);
+            }
+
+            result = result.episodes.sort(function (a, b) {
+                if (a.number < b.number) {
+                    return -1;
+                } else if (a.number > b.number) {
+                    return 1;
+                }
+                return 0;
+            });
+
+            if(result.length) {
+                // return first result
+                promise.complete(result.slice(0, 1).shift());
+            } else {
+                promise.complete(result);
+            }
+        });
+
+    return promise;
+};
+
+ShowSchema.statics.controls = function (showId) {
+    var promise = new mongoose.Promise;
+
+    this.findOne({ref: showId})
+        .select('episodes')
+        .populate('episodes')
+        .exec(function (err, result) {
+            if (err) {
+                promise.error(err);
+            }
+
+            result = result.episodes.sort(function (a, b) {
+                if (a.number < b.number) {
+                    return -1;
+                } else if (a.number > b.number) {
+                    return 1;
+                }
+                return 0;
+            });
+
+            result = result.slice(0, 1).shift();
+
+            var list = [];
+                list.push( result );
+                list.push( {
+                    title : 'Add to Queue',
+                    icon : 'fa fa-plus'
+                });
+                list.push( {
+                    title : 'All seasons and episodes',
+                    icon : 'fa fa-bars'
+                });
+
+            promise.complete( list );
+
         });
 
     return promise;

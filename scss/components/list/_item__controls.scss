@@ -1,4 +1,4 @@
-.item__episode {
+.item__controls {
     display: block;
     padding: 0;
     margin: 0;
@@ -9,20 +9,24 @@
         background-color: $color-red--1;
     }
 
-    &.selected .item__episode--title {
+    &.selected .item__controls--title {
         color: $color-white--1 !important;
     }
 }
 
-.item__episode--divider {
+.item__controls--divider {
     border-top: 3px solid $color-grey--3;
 }
 
-.item__episode--title {
+.item__controls--title {
     padding: 40px;
     font-family: 'Montserrat',sans-serif;
     color: $color_black--1;
     font-weight: 700;
     text-transform: capitalize;
     @include font-size(30);
+
+    span {
+        margin-right: 30px;
+    }
 }

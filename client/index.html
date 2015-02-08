@@ -8,21 +8,14 @@
     <title>Mediacenter</title>
 
     <script src="/socket.io/socket.io.js"></script>
-    <!--<script data-main="js/modules/list/module" src="bower_components/requirejs/require.js"></script>-->
     <script data-main="js/module" src="bower_components/requirejs/require.js"></script>
     <script src="js/mediacenter.min.js"></script>
 
     <link type="text/css" rel="stylesheet" href="/css/mediacenter.css" />
+    <!--<link type="text/css" rel="stylesheet" href="/font-awesome.min.css" />-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="/vendor/jquery.mCustomScrollbar.css" />
 </head>
-<body style="overflow: hidden;">
-    <script type="text/javascript">
-
-        var socket = io.connect(window.location.host);
-
-        socket.on('connect', function() {
-            socket.emit('screen');
-        });
-    </script>
+<body style="overflow: hidden">
 </body>
 </html>
