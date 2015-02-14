@@ -71,7 +71,7 @@
 
 @keyframes moveToBottom {
     from { }
-    to { transform: translateY(180%); }
+    to { transform: translateY(200%); opacity: 0 }
 }
 
 @keyframes scaleUp {

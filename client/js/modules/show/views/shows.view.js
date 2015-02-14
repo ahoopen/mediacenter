@@ -1,37 +1,47 @@
-/* globals define, require, _, io, $ */
+/* globals define, require, $,_, io */
 
 define([
-    'dst!modules/show/template/show.season.dust',
-    'modules/page/views/page.view'
+    'dst!modules/show/template/shows.dust',
+    'modules/page/views/page.view',
+    'modules/list/model/list.showcontrol.model',
+    'component-list'
 ], function () {
     'use strict';
 
     var Page = require('modules/page/views/page.view'),
-        Controls = require('modules/list/model/list.episode.model'),
+        Controls = require('modules/list/model/list.show.model'),
         List = require('component-list');
 
     return Page.extend({
 
-        template: require('dst!modules/show/template/show.season.dust'),
+        template: require('dst!modules/show/template/shows.dust'),
 
         subscriptions : {
-            'SHOW_EPISODE_SELECTED' : 'onSelectedEpisode'
+            'SHOW_SELECTED' : 'onSelectedShow'
         },
 
-        initialize: function (options) {
+        initialize: function () {
             this.listenTo(this, 'render-complete', this.onRenderComplete);
 
             _.bindAll(this, 'render');
 
-            this.list = new List({
-                model: new Controls()
+            this.list = new List( {
+                model : new Controls()
             });
 
             this.socket();
 
             this.model.on('change', this.render);
             this.model.fetch({
-                url: 'api/shows/' + options.title
+                url: 'api/shows'
+            });
+        },
+
+        socket : function() {
+            var socket = io.connect(window.location.host);
+
+            socket.on('connect', function() {
+                socket.emit('screen');
             });
         },
 
@@ -44,26 +54,13 @@ define([
             };
         },
 
-        onSelectedEpisode : function(episode) {
-            this.$('.show__overview--image').css( {
-                'background-image' : 'url(' + episode.screen + ')'
-            });
-            //this.$('.show__poster-img').attr('src', episode.screen);
-            this.$('.show__info--synopsis p').html( episode.summary );
-        },
-
-        socket: function () {
-            var socket = io.connect(window.location.host);
-
-            socket.on('connect', function () {
-                socket.emit('screen');
-            });
-
+        onSelectedShow : function(episode) {
+            console.log('show.view..', this.$('.show__poster-img') );
+            this.$('.show__poster-img').attr('src', episode.poster);
         },
 
         render: function () {
             this.publish('SHOW__BACKGROUND', this.model.get('background'));
-            console.log('render page');
             return Page.prototype.render.apply(this, arguments);
         },
 

@@ -73,10 +73,13 @@ define([
                 current.removeClass('selected');
 
                 if ($(current).prev().attr('data-menu-list') === 'start') {
-                    $('[data-menu-list="end"]').prev().addClass('selected');
+                    $('[data-menu-list="end"]').prev().addClass('selected').trigger('click');
                 } else {
-                    $(current).prev().addClass('selected');
+                    $(current).prev().addClass('selected').trigger('click');
                 }
+
+                var indexElement = $('.menu__nav-wrapper').index($('.selected', self.$el));
+                self.scrollTo(indexElement);
             });
         },
 
@@ -92,10 +95,13 @@ define([
                 current.removeClass('selected');
 
                 if ($(current).next().attr('data-menu-list') === 'end') {
-                    $('[data-menu-list="start"]').next().addClass('selected');
+                    $('[data-menu-list="start"]').next().addClass('selected').trigger('click');
                 } else {
-                    $(current).next().addClass('selected');
+                    $(current).next().addClass('selected').trigger('click');
                 }
+
+                var indexElement = $('li', self.$el).index($('.selected'));
+                self.scrollTo(indexElement);
             });
         },
 
@@ -105,13 +111,20 @@ define([
             });
         },
 
+        scrollTo: function (element) {
+            var menu = $('#menu');
+            menu.mCustomScrollbar('scrollTo', menu.find('.mCSB_container').find('li:eq(' + element + ')'));
+        },
+
         renderScrollbar: function () {
             $('#menu').mCustomScrollbar({
                 axis: 'y',
                 theme: 'minimal-dark',
                 scrollbarPosition: 'outside',
-                autoHideScrollbar: true,
-                scrollInertia: 20
+                scrollEasing: 'easeOut',
+                autoHideScrollbar: false,
+                scrollInertia: 200,
+                updateOnContentResize: true
             });
         },
 

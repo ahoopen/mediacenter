@@ -13,7 +13,7 @@ define([
         template: require('dst!modules/list/template/item.episode.dust'),
 
         events: {
-            'click .item__episode--title': 'test'
+            'click': 'onSelect'
         },
 
         initialize: function () {
@@ -31,8 +31,14 @@ define([
             return this;
         },
 
-        test: function () {
-            Backbone.history.navigate('/show/homeland', {trigger: true});
+        onSelect: function (event) {
+            event.preventDefault();
+
+            this.publish('SHOW_EPISODE_SELECTED', {
+                screen : this.model.get('screen'),
+                summary : this.model.get('summary')
+            });
+            //Backbone.history.navigate('/show/homeland', {trigger: true});
         }
     });
 });

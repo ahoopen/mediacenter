@@ -18,8 +18,13 @@ body:before {
     filter: blur(2px);
 }
 
+#menu {
+    height: 790px;
+}
+
 .show__overview {
     display: flex;
+    height: 790px;
 }
 
 .show__overview--menu {
@@ -28,8 +33,8 @@ body:before {
     background-color: $color_white--2;
     box-shadow: 2px 0px 10px #666;
     z-index: 3;
-    min-width: 350px;
-    max-height: 790px;
+    min-width: 500px;
+    height: 790px;
 
     .show__overview--title {
         height: 200px;
@@ -75,10 +80,15 @@ body:before {
     flex: none;
     box-shadow: 3px 0px 30px #000;
     z-index: 1;
-    max-height: 790px;
+    height: 790px;
+    width: 500px;
+
+//    background-size: cover;
+//    background-position-x: -190px;
 
     img {
         height: 790px;
+        width: 500px;
     }
 }
 
@@ -86,7 +96,8 @@ body:before {
     flex: 1;
     background-color: $color_black--1;
     padding: 40px;
-    max-height: 790px;
+    height: 790px;
+    min-width: 600px;
 
     h1 {
         font-family: 'Montserrat',sans-serif;

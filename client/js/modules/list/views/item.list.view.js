@@ -1,4 +1,4 @@
-/* globals define, require, Backbone */
+/* globals define, require, Backbone, _ */
 define([
     'dst!modules/list/template/list.empty.dust',
 
@@ -55,7 +55,9 @@ define([
          *
          */
         onRenderComplete: function () {
-            this.publish('LIST_RENDER_COMPLETE');
+            _.delay( function() {
+                this.publish('LIST_RENDER_COMPLETE');
+            }.bind(this), 200);
         },
 
         /**

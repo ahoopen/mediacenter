@@ -1,4 +1,4 @@
-/* globals define, Backbone, _ */
+/* globals define, Backbone, $, _ */
 
 define( function () {
     'use strict';
@@ -49,6 +49,7 @@ define( function () {
                 view.$el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd animationend', function () {
                     view.$el.removeClass('pt-page-scaleUp');
                     if (_.isFunction(callback)) {
+                        $('#menu').mCustomScrollbar('update');
                         callback();
                     }
                 });

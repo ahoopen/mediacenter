@@ -1,0 +1,23 @@
+<div class="show__overview">
+    <div class="show__overview--menu">
+        <div class="show__overview--options"></div>
+    </div>
+    <div class="show__overview--image">
+        <img class="show__poster-img" src="{image}" />
+    </div>
+    <div class="show__overview--info">
+        <div class="show__info--synopsis">
+            <h1>Synopsis</h1>
+            <p>{summary}</p>
+        </div>
+        <div class="show__info--actors">
+            <h1>Actors</h1>
+            <p></p>
+        </div>
+        <div class="show__info--category">
+            <h1>Category</h1>
+            <p>{genre}</p>
+        </div>
+
+    </div>
+</div>
