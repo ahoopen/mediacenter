@@ -1,4 +1,4 @@
-<div class="item__controls--divider">
+<div class="item__controls--divider item--action">
     <div class="item__controls--title">
         <span class="{icon}"></span>{title}
     </div>

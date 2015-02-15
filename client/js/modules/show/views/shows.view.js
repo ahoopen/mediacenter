@@ -1,4 +1,4 @@
-/* globals define, require, $,_, io */
+/* globals define, require, $, _ */
 
 define([
     'dst!modules/show/template/shows.dust',
@@ -38,7 +38,8 @@ define([
         },
 
         socket : function() {
-            var socket = io.connect(window.location.host);
+            //var socket = io.connect(window.location.host);
+            var socket = window.socket;
 
             socket.on('connect', function() {
                 socket.emit('screen');
@@ -54,9 +55,9 @@ define([
             };
         },
 
-        onSelectedShow : function(episode) {
-            console.log('show.view..', this.$('.show__poster-img') );
-            this.$('.show__poster-img').attr('src', episode.poster);
+        onSelectedShow : function(show) {
+            this.publish('SHOW__BACKGROUND', show.background);
+            this.$('.show__poster-img').attr('src', show.background);
         },
 
         render: function () {

@@ -17,7 +17,6 @@ define([
         socket: null,
         gesture: null,
 
-
         initialize: function () {
             Backbone.View.prototype.initialize.apply(this, arguments);
 
@@ -67,10 +66,11 @@ define([
                     self._sendRemoteAction('previous');
                 });
                 this.gesture.on('tap', function () {
-                    self._sendRemoteAction('tap');
+                    self._sendRemoteAction('select');
+
                 });
                 this.gesture.on('doubletap', function () {
-                    self._sendRemoteAction('doubletap');
+                    self._sendRemoteAction('select');
                 });
             }
         },

@@ -1,4 +1,4 @@
-/* globals define, require, $, io, Backbone */
+/* globals define, require, $, Backbone */
 
 define([
     'dst!modules/list/template/list.dust',
@@ -29,7 +29,8 @@ define([
                 model: this.model
             });
 
-            this.socket = io.connect(window.location.host);
+            //this.socket = io.connect(window.location.host);
+            this.socket = window.socket;
             this.listenTo(this, 'render-complete', this.onRenderComplete);
             this.render();
         },
@@ -38,13 +39,13 @@ define([
          * When rendering of the view is complete, initialize sockets
          */
         onRenderComplete: function () {
-            this.socket.on('connect', function () {
-                console.log('list socket connected!');
+            //this.socket.on('connect', function () {
+            //    console.log('list socket connected!');
                 this.connected = true;
                 this.next();
                 this.previous();
                 this.enter();
-            }.bind(this));
+            //}.bind(this));
         },
 
         /**
@@ -107,24 +108,31 @@ define([
 
         enter: function () {
             this.onSocketEvent('remote:enter', function () {
-                console.log('goto next page!');
+                $('.selected').find('.item--action').trigger('click');
             });
+
         },
 
-        scrollTo: function (element) {
+        scrollTo: function () {
             var menu = $('#menu');
-            menu.mCustomScrollbar('scrollTo', menu.find('.mCSB_container').find('li:eq(' + element + ')'));
+
+                //menu.mCustomScrollbar('scrollTo', 'li:eq(' + element + ')' );
+                menu.mCustomScrollbar('scrollTo', '.selected', {
+                    scrollEasing: 'easeOut'
+                });
         },
 
         renderScrollbar: function () {
-            $('#menu').mCustomScrollbar({
-                axis: 'y',
-                theme: 'minimal-dark',
-                scrollbarPosition: 'outside',
-                scrollEasing: 'easeOut',
-                autoHideScrollbar: false,
-                scrollInertia: 200,
-                updateOnContentResize: true
+            $(window).ready( function(){
+                $('#menu').mCustomScrollbar({
+                    axis: 'y',
+                    theme: 'minimal-dark',
+                    scrollbarPosition: 'outside',
+                    scrollEasing: 'easeOut',
+                    autoHideScrollbar: false,
+                    scrollInertia: 200
+                    //updateOnContentResize: true
+                });
             });
         },
 

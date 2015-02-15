@@ -1,4 +1,4 @@
-<div class="item__show--block">
+<div class="item__show--block item--action">
     <div class="item__show--image">
         <img width="100" src="{image}" />
     </div>

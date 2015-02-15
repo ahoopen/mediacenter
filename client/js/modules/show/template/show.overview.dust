@@ -8,11 +8,11 @@
             <ul>
                 <li>
                     <span class="fa fa-clock-o"></span>
-                    00:45
+                    00:{runtime}
                 </li>
                 <li>
                     <span class="fa fa-star"></span>
-                    4 out of 5
+                    {rating}
                 </li>
                 <li>
                     <span class="fa fa-bars"></span>
@@ -37,6 +37,5 @@
             <h1>Category</h1>
             <p>{genre}</p>
         </div>
-
     </div>
 </div>

@@ -36,7 +36,7 @@ define([
          */
         render: function () {
             this._removeSubviews();
-
+            
             // render all the item views
             this.model.get('items').each(function (model) {
                 this.renderItem(model);
@@ -56,6 +56,7 @@ define([
          */
         onRenderComplete: function () {
             _.delay( function() {
+                console.log('list rendering complete..');
                 this.publish('LIST_RENDER_COMPLETE');
             }.bind(this), 200);
         },

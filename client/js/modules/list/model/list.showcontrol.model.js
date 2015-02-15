@@ -12,6 +12,11 @@ define([
 
         urlRoot: 'api/list/shows/1407/controls',
 
+        initialize : function() {
+
+            //this.urlRoot = 'api/list/shows/'+ ref +'/controls';
+        },
+
         parse: function (response) {
 
             if (response.items) {

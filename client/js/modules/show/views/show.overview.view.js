@@ -1,4 +1,4 @@
-/* globals define, require, $,_, io */
+/* globals define, require, $, _ */
 
 define([
     'dst!modules/show/template/show.overview.dust',
@@ -26,21 +26,10 @@ define([
                 model : new Controls()
             });
 
-            this.socket();
-
             this.model.on('change', this.render);
             this.model.fetch({
                 url: 'api/shows/' + options.title
             });
-        },
-
-        socket : function() {
-            var socket = io.connect(window.location.host);
-
-            socket.on('connect', function() {
-                socket.emit('screen');
-            });
-
         },
 
         getTemplateData: function () {
@@ -48,15 +37,15 @@ define([
                 title: this.model.get('title'),
                 summary: this.model.get('summary'),
                 genre: this.model.get('genre'),
-                image: this.model.get('poster')
+                image: this.model.get('poster'),
+                rating : this.model.get('rating'),
+                runtime : this.model.get('episode_run_time')
             };
         },
 
         render: function () {
             this.publish('SHOW__BACKGROUND', this.model.get('background'));
-            console.log('render page');
             return Page.prototype.render.apply(this, arguments);
-
         },
 
         onRenderComplete: function () {

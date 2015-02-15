@@ -1,8 +1,8 @@
-<div class="show__overview">
+<div class="show__list">
     <div class="show__overview--menu">
         <div class="show__overview--options"></div>
     </div>
-    <div class="show__overview--image">
+    <div class="show__list--image">
         <img class="show__poster-img" src="{image}" />
     </div>
 </div>

@@ -13,7 +13,8 @@ define([
         template: require('dst!modules/list/template/item.list.dust'),
 
         events: {
-            'click': 'onSelect'
+            'click': 'onSelect',
+            'click .item__show--block' : 'test'
         },
 
         initialize: function () {
@@ -37,13 +38,13 @@ define([
             event.preventDefault();
 
             this.publish('SHOW_SELECTED', {
-                poster: this.model.get('poster'),
+                background: this.model.get('background'),
                 summary: this.model.get('summary')
             });
 
-            var show = this.model.get('title');
+            //var show = this.model.get('title');
 
-            Backbone.history.navigate('/show/' + show, {trigger: true});
+            //Backbone.history.navigate('/show/' + show, {trigger: true});
         },
 
         test: function () {

@@ -1,4 +1,4 @@
-/* globals define, require, $, window */
+/* globals define, require, $, io, window */
 
 define('raspberry-pi-mediacenterjs', [
     'routes/router',
@@ -11,6 +11,8 @@ define('raspberry-pi-mediacenterjs', [
     var app = require('modules/page/views/app.view'),
         main = new app();
 
+    // set socket instance global
+    window.socket = io.connect(window.location.host);
 
         window.app = main;
 

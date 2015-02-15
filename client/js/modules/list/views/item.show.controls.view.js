@@ -12,6 +12,10 @@ define([
 
         template: require('dst!modules/list/template/item.show.controls.dust'),
 
+        events : {
+            'click .item--action' : 'showSeasonList'
+        },
+
         initialize: function () {
             this.$el.addClass('item__controls');
         },
@@ -26,6 +30,12 @@ define([
         render: function () {
             Backbone.View.prototype.render.apply(this, arguments);
             return this;
+        },
+
+        showSeasonList : function(event) {
+            event.preventDefault();
+
+            Backbone.history.navigate('/show/the walking dead/season/1', {trigger: true});
         }
     });
 });

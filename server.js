@@ -73,7 +73,7 @@ io.on('connect', function (socket) {
     });
 
     socket.on('remote_control_action', function (data) {
-        console.log('remote control action!');
+        console.log('remote control action!', data.action);
 
         if (socket.type == 'remote') {
             if (data.action === 'next') {
@@ -88,7 +88,7 @@ io.on('connect', function (socket) {
                     ss.emit('remote:previous');
                 }
             }
-            if (data.action === 'enter') {
+            if (data.action === 'select') {
                 if( typeof  ss != undefined) {
                     ss.emit('remote:enter');
                 }

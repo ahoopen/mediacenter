@@ -1,4 +1,4 @@
-/* globals define, require, _, io, $ */
+/* globals define, require, _, $ */
 
 define([
     'dst!modules/show/template/show.season.dust',
@@ -53,7 +53,8 @@ define([
         },
 
         socket: function () {
-            var socket = io.connect(window.location.host);
+            //var socket = io.connect(window.location.host);
+            var socket = window.socket;
 
             socket.on('connect', function () {
                 socket.emit('screen');

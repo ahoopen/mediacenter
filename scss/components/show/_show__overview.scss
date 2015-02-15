@@ -25,6 +25,10 @@ body:before {
 .show__overview {
     display: flex;
     height: 790px;
+
+    #menu {
+        height: auto;
+    }
 }
 
 .show__overview--menu {
