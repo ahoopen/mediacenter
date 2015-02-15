@@ -96,6 +96,8 @@ var tvShow = {
                     title: response.title.toLowerCase(),
                     summary: response.summary,
                     genre: response.genres,
+                    rating : response.rating,
+                    episode_run_time : response.episode_run_time,
                     poster: file.path,
                     background: response.background
                 }, function (err) {

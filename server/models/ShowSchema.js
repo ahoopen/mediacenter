@@ -48,6 +48,8 @@ var ShowSchema = new Schema({
     genre: {type: Array},
     poster: {type: String},
     background: {type: String},
+    rating: {type: String},
+    episode_run_time: {type: String},
     episodes: [{type: ObjectId, ref: "Episode", index: true}]
 });
 

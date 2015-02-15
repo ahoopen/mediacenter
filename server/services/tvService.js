@@ -24,6 +24,8 @@ var tvService = {
                         id: response.id,
                         title: response.name,
                         summary: details.summary,
+                        rating : details.rating,
+                        episode_run_time : details.episode_run_time,
                         genres: details.genres,
                         poster: response.poster_path,
                         background: details.background
@@ -69,6 +71,8 @@ var tvService = {
      * @returns {Promise}
      */
     showDetails: function (id) {
+        var self = this;
+
         return new Promise(function (resolve, reject) {
             api.tvInfo({id: id}, function (err, response) {
                 if (err) {
@@ -80,6 +84,8 @@ var tvService = {
                     var details = {
                         summary: response.overview,
                         background: file.path,
+                        episode_run_time: self.getEpisideRunTime(response.episode_run_time),
+                        rating: response.vote_average,
                         genres: response.genres.map(function (genre) {
                             return genre.name;
                         })
@@ -88,6 +94,23 @@ var tvService = {
                 });
             });
         });
+    },
+
+    /**
+     * computes the average duration of the shows episodes.
+     *
+     * @param runtime
+     * @returns {*}
+     */
+    getEpisideRunTime: function (runtime) {
+        var total = runtime.reduce(function (memo, episode_run_time) {
+            return memo + parseInt(episode_run_time, 10);
+        }, 0);
+
+        if (runtime.length > 1) {
+            total = Math.floor(total / runtime.length);
+        }
+        return total
     },
 
     /**

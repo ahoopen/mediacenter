@@ -3,20 +3,12 @@
 var path = require('path'),
     config = require('../configuration/config'),
     Promise = require('promise'),
-    winston = require('winston')
     tv_title_cleaner = require('./title-cleaner'),
     scan = require('./scan');
 
 var Episode = require('../controllers/Episode');
 var Show = require('../controllers/Show');
 
-
-//var logger = new (winston.Logger)({
-//    transports: [
-//        new (winston.transports.Console)({level: 'debug'}),
-//        new (winston.transports.File)({ filename: './server/logs/metadata.log', level: 'debug'})
-//    ]
-//});
 
 
 var SUPPORTED_FILETYPES = new RegExp("(avi|mkv|mpeg|mov|mp4|m4v|wmv)$", "g");  //Pipe seperated
