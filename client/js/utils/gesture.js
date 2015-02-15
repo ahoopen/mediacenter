@@ -1,12 +1,12 @@
 /* globals define, $, dispatchEvent */
 
-define( function() {
+define(function () {
 
     'use strict';
 
     var gesture = function (element) {
         this.surface = element;
-        this.threshold = 100;
+        this.threshold = 150;
         this.restraint = 200;
         this.allowedTime = 700;
         this.startTime = 0;
@@ -41,7 +41,7 @@ define( function() {
         this.surface.addEventListener('touchend', this.touchEnd.bind(this), false);
 
         addEventListener('GestureEvent', function (GestureEvent) {
-            for( var i = 0; i < this.gestures.length; i++) {
+            for (var i = 0; i < this.gestures.length; i++) {
                 var gesture = this.gestures[i];
                 if (gesture.type === GestureEvent.detail) {
                     gesture.callback();
@@ -109,7 +109,7 @@ define( function() {
             this.direction = (this.distX < 0) ? 'swipeLeft' : 'swipeRight';
         }
         else {
-        $('.remote__control--actions').text( this.distY, ' --- ', 0 );
+            $('.remote__control--actions').text(this.distY, ' --- ', 0);
             this.direction = (this.distY < 0) ? 'swipeUp' : 'swipeDown';
         }
 
@@ -129,7 +129,6 @@ define( function() {
         // clear press timeout
         clearTimeout(this.timeout);
 
-
         if (this.elapsedTime <= this.allowedTime) {
             if (this.isHorizontal(this.distX, this.distY)) {
                 dispatchEvent(new CustomEvent('GestureEvent', {detail: this.direction}));
@@ -145,6 +144,10 @@ define( function() {
             this.previousElement = doubleTap ? null : this.startTarget;
             this.previousTime = timestamp;
         }
+
+        // reset coordinates
+        this.distX = 0;
+        this.distY = 0;
 
         event.preventDefault();
     };
