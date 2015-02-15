@@ -65,7 +65,7 @@ var tvEpisode = {
      * @returns {*}
      */
     addEpisode: function (id, episode) {
-        var path = 'http://image.tmdb.org/t/p/w500' + episode.still_path;
+        var path = 'http://image.tmdb.org/t/p/w1920' + episode.still_path;
 
         return new Promise(function (resolve) {
             Cache.save(id, path).then(function (file) {
