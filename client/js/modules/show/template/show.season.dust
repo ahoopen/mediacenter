@@ -2,7 +2,7 @@
     <div class="show__overview--menu">
         <div class="show__overview--options"></div>
     </div>
-    <div class="show__overview--image">
+    <div class="show__overview--image show__episode--image">
         <img class="show__poster-img" src="{image}" />
     </div>
     <div class="show__overview--info">

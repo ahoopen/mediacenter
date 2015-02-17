@@ -29,7 +29,6 @@ define([
                 model: this.model
             });
 
-            //this.socket = io.connect(window.location.host);
             this.socket = window.socket;
             this.listenTo(this, 'render-complete', this.onRenderComplete);
             this.render();
@@ -39,27 +38,9 @@ define([
          * When rendering of the view is complete, initialize sockets
          */
         onRenderComplete: function () {
-            //this.socket.on('connect', function () {
-            //    console.log('list socket connected!');
-                this.connected = true;
-                this.next();
-                this.previous();
-                this.enter();
-            //}.bind(this));
-        },
-
-        /**
-         * Set socket listener
-         *
-         * @param action
-         * @param fn
-         */
-        onSocketEvent: function (action, fn) {
-            if (this.connected) {
-                this.socket.on(action, fn);
-            } else {
-                throw 'Remote control - Connect first!';
-            }
+            this.socket.on('remote:next', this.next);
+            this.socket.on('remote:previous', this.previous);
+            this.socket.on('remote:enter', this.enter);
         },
 
         /**
@@ -67,21 +48,16 @@ define([
          *
          */
         next: function () {
-            var self = this;
+            var current = $('.selected', this.$el);
+            current.removeClass('selected');
 
-            this.onSocketEvent('remote:next', function () {
-                var current = $('.selected', self.$el);
-                current.removeClass('selected');
+            if ($(current).prev().attr('data-menu-list') === 'start') {
+                $('[data-menu-list="end"]').prev().addClass('selected').trigger('click');
+            } else {
+                $(current).prev().addClass('selected').trigger('click');
+            }
 
-                if ($(current).prev().attr('data-menu-list') === 'start') {
-                    $('[data-menu-list="end"]').prev().addClass('selected').trigger('click');
-                } else {
-                    $(current).prev().addClass('selected').trigger('click');
-                }
-
-                var indexElement = $('.menu__nav-wrapper').index($('.selected', self.$el));
-                self.scrollTo(indexElement);
-            });
+            this.scrollTo();
         },
 
         /**
@@ -89,37 +65,29 @@ define([
          *
          */
         previous: function () {
-            var self = this;
+            var current = $('.selected', this.$el);
+            current.removeClass('selected');
 
-            this.onSocketEvent('remote:previous', function () {
-                var current = $('.selected', self.$el);
-                current.removeClass('selected');
+            if ($(current).next().attr('data-menu-list') === 'end') {
+                $('[data-menu-list="start"]').next().addClass('selected').trigger('click');
+            } else {
+                $(current).next().addClass('selected').trigger('click');
+            }
 
-                if ($(current).next().attr('data-menu-list') === 'end') {
-                    $('[data-menu-list="start"]').next().addClass('selected').trigger('click');
-                } else {
-                    $(current).next().addClass('selected').trigger('click');
-                }
-
-                var indexElement = $('li', self.$el).index($('.selected'));
-                self.scrollTo(indexElement);
-            });
+            this.scrollTo();
         },
 
         enter: function () {
-            this.onSocketEvent('remote:enter', function () {
-                $('.selected').find('.item--action').trigger('click');
-            });
-
+            $('.selected').find('.item--action').trigger('click');
         },
 
         scrollTo: function () {
             var menu = $('#menu');
 
-                //menu.mCustomScrollbar('scrollTo', 'li:eq(' + element + ')' );
-                menu.mCustomScrollbar('scrollTo', '.selected', {
-                    scrollEasing: 'easeOut'
-                });
+            //menu.mCustomScrollbar('scrollTo', 'li:eq(' + element + ')' );
+            menu.mCustomScrollbar('scrollTo', '.selected', {
+                scrollEasing: 'easeOut'
+            });
         },
 
         renderScrollbar: function () {
@@ -131,7 +99,6 @@ define([
                     scrollEasing: 'easeOut',
                     autoHideScrollbar: false,
                     scrollInertia: 200
-                    //updateOnContentResize: true
                 });
             });
         },
@@ -139,6 +106,12 @@ define([
         attachList: function () {
             this.$('.item__list').replaceWith($(this.list.$el));
             this.renderScrollbar();
+        },
+
+        remove : function() {
+            this.socket.removeListener('remote:next', this.next);
+            this.socket.removeListener('remote:previous', this.previous);
+            this.socket.removeListener('remote:enter', this.enter);
         }
     });
 });

@@ -65,8 +65,20 @@ define([
             return Page.prototype.render.apply(this, arguments);
         },
 
+        /**
+         * Append the item view to the list view
+         *
+         * @param id
+         * @param view
+         */
+        appendToElement: function (id, view) {
+            this.$('.show__overview--options').replaceWith($(view.$el));
+            this.subview(id, view);
+        },
+
         onRenderComplete: function () {
-            this.$('.show__overview--options').replaceWith($(this.list.$el));
+            // add as subview
+            this.appendToElement('list', this.list);
         }
     });
 });

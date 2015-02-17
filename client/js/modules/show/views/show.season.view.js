@@ -14,8 +14,8 @@ define([
 
         template: require('dst!modules/show/template/show.season.dust'),
 
-        subscriptions : {
-            'SHOW_EPISODE_SELECTED' : 'onSelectedEpisode'
+        subscriptions: {
+            'SHOW_EPISODE_SELECTED': 'onSelectedEpisode'
         },
 
         initialize: function (options) {
@@ -26,8 +26,6 @@ define([
             this.list = new List({
                 model: new Controls()
             });
-
-            this.socket();
 
             this.model.on('change', this.render);
             this.model.fetch({
@@ -44,32 +42,31 @@ define([
             };
         },
 
-        onSelectedEpisode : function(episode) {
-            this.$('.show__overview--image').css( {
-                'background-image' : 'url(' + episode.screen + ')'
+        onSelectedEpisode: function (episode) {
+            this.$('.show__overview--image').css({
+                'background-image': 'url(' + episode.screen + ')'
             });
-            //this.$('.show__poster-img').attr('src', episode.screen);
-            this.$('.show__info--synopsis p').html( episode.summary );
-        },
-
-        socket: function () {
-            //var socket = io.connect(window.location.host);
-            var socket = window.socket;
-
-            socket.on('connect', function () {
-                socket.emit('screen');
-            });
-
+            this.$('.show__info--synopsis p').html(episode.summary);
         },
 
         render: function () {
             this.publish('SHOW__BACKGROUND', this.model.get('background'));
-            console.log('render page');
             return Page.prototype.render.apply(this, arguments);
         },
 
         onRenderComplete: function () {
-            this.$('.show__overview--options').replaceWith($(this.list.$el));
+            this.appendToElement('list-season', this.list);
+        },
+
+        /**
+         * Append the item view to the list view
+         *
+         * @param id
+         * @param view
+         */
+        appendToElement: function (id, view) {
+            this.$('.show__overview--options').replaceWith($(view.$el));
+            this.subview(id, view);
         }
     });
 });
