@@ -6,16 +6,8 @@ define([
 
     'use strict';
 
-    //var ListControleCollection = require('modules/list/collection/list.controls.collection');
 
     return Backbone.Model.extend({
-
-        urlRoot: 'api/list/shows/1407/controls',
-
-        initialize : function() {
-
-            //this.urlRoot = 'api/list/shows/'+ ref +'/controls';
-        },
 
         parse: function (response) {
 

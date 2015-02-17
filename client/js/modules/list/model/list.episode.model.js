@@ -2,19 +2,13 @@
 
 define([
     'modules/list/collection/list.episode.collection'
-],function () {
+], function () {
 
     'use strict';
 
     var EpisodeCollection = require('modules/list/collection/list.episode.collection');
 
     return Backbone.Model.extend({
-
-        urlRoot: 'api/list/shows',
-
-        url: function () {
-            return 'api/list/shows/1407/season/1';
-        },
 
         parse: function (response) {
 

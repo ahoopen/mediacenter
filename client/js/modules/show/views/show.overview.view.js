@@ -21,14 +21,11 @@ define([
 
             _.bindAll(this, 'render');
 
-
-            this.list = new List( {
-                model : new Controls()
-            });
-
-            this.model.on('change', this.render);
             this.model.fetch({
-                url: 'api/shows/' + options.title
+                url: 'api/shows/' + options.title,
+                success: function() {
+                    this.getShowControls();
+                }.bind(this)
             });
         },
 
@@ -41,6 +38,17 @@ define([
                 rating : this.model.get('rating'),
                 runtime : this.model.get('episode_run_time')
             };
+        },
+
+        getShowControls: function () {
+            var ref = this.model.get('ref');
+
+            this.list = new List({
+                url : 'api/list/shows/' + ref + '/controls',
+                model: new Controls()
+            });
+
+            this.render();
         },
 
         render: function () {

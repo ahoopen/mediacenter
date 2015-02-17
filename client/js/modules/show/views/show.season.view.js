@@ -7,7 +7,7 @@ define([
     'use strict';
 
     var Page = require('modules/page/views/page.view'),
-        Controls = require('modules/list/model/list.episode.model'),
+        EpisodeList = require('modules/list/model/list.episode.model'),
         List = require('component-list');
 
     return Page.extend({
@@ -20,16 +20,13 @@ define([
 
         initialize: function (options) {
             this.listenTo(this, 'render-complete', this.onRenderComplete);
-
             _.bindAll(this, 'render');
 
-            this.list = new List({
-                model: new Controls()
-            });
-
-            this.model.on('change', this.render);
             this.model.fetch({
-                url: 'api/shows/' + options.title
+                url: 'api/shows/' + options.title,
+                success: function () {
+                    this.getListEpisodes();
+                }.bind(this)
             });
         },
 
@@ -47,6 +44,17 @@ define([
                 'background-image': 'url(' + episode.screen + ')'
             });
             this.$('.show__info--synopsis p').html(episode.summary);
+        },
+
+        getListEpisodes: function () {
+            var ref = this.model.get('ref');
+
+            this.list = new List({
+                url : 'api/list/shows/' + ref + '/season/1',
+                model: new EpisodeList()
+            });
+
+            this.render();
         },
 
         render: function () {

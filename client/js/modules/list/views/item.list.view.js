@@ -15,6 +15,8 @@ define([
 
     return Backbone.View.extend({
 
+        optionNames : ['url'],
+
         template: require('dst!modules/list/template/list.empty.dust'),
 
         initialize: function () {
@@ -65,6 +67,7 @@ define([
          */
         getItems: function () {
             this.model.fetch({
+                url : this.url,
                 success: function () {
                     this.render();
                 }.bind(this)

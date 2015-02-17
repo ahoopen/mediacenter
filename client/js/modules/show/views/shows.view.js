@@ -26,6 +26,7 @@ define([
             _.bindAll(this, 'render');
 
             this.list = new List( {
+                url : 'api/list/shows',
                 model : new Controls()
             });
 
@@ -38,7 +39,6 @@ define([
         },
 
         socket : function() {
-            //var socket = io.connect(window.location.host);
             var socket = window.socket;
 
             socket.on('connect', function() {
@@ -61,7 +61,7 @@ define([
         },
 
         render: function () {
-            this.publish('SHOW__BACKGROUND', this.model.get('background'));
+            //this.publish('SHOW__BACKGROUND', this.model.get('background'));
             return Page.prototype.render.apply(this, arguments);
         },
 
@@ -77,7 +77,6 @@ define([
         },
 
         onRenderComplete: function () {
-            // add as subview
             this.appendToElement('list', this.list);
         }
     });

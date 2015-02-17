@@ -16,6 +16,8 @@ define([
 
     return Backbone.View.extend({
 
+        optionNames: ['url'],
+
         template: require('dst!modules/list/template/list.dust'),
 
         subscriptions: {
@@ -26,6 +28,7 @@ define([
 
         initialize: function () {
             this.list = new ItemList({
+                url: this.url,
                 model: this.model
             });
 
@@ -38,9 +41,9 @@ define([
          * When rendering of the view is complete, initialize sockets
          */
         onRenderComplete: function () {
-            this.socket.on('remote:next', this.next);
-            this.socket.on('remote:previous', this.previous);
-            this.socket.on('remote:enter', this.enter);
+            this.socket.on('remote:next', this.next.bind(this));
+            this.socket.on('remote:previous', this.previous.bind(this));
+            this.socket.on('remote:enter', this.enter.bind(this));
         },
 
         /**
@@ -91,7 +94,7 @@ define([
         },
 
         renderScrollbar: function () {
-            $(window).ready( function(){
+            $(window).ready(function () {
                 $('#menu').mCustomScrollbar({
                     axis: 'y',
                     theme: 'minimal-dark',
@@ -108,7 +111,7 @@ define([
             this.renderScrollbar();
         },
 
-        remove : function() {
+        remove: function () {
             this.socket.removeListener('remote:next', this.next);
             this.socket.removeListener('remote:previous', this.previous);
             this.socket.removeListener('remote:enter', this.enter);

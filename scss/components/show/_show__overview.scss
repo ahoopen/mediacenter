@@ -6,7 +6,7 @@ body {
 body:before {
     content: "";
     position: fixed;
-    //    background: url('/background.jpg');
+//    background: url('/blurred-background-7.jpg');
     background-size: cover;
     z-index: -1; /* Keep the background behind the content */
     height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
@@ -87,9 +87,6 @@ body:before {
     height: 790px;
     width: 500px;
 
-//    background-size: cover;
-//    background-position-x: -190px;
-
     img {
         height: 790px;
         width: 500px;
@@ -115,7 +112,7 @@ body:before {
         font-family: 'Open-sans', sans-serif;
         @include font-size(20);
         color: $color_grey--2;
-        line-height: 30px;
+        line-height: 180%;
         margin-bottom: 15px;
     }
 }
