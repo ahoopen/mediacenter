@@ -41,9 +41,14 @@ define([
          * When rendering of the view is complete, initialize sockets
          */
         onRenderComplete: function () {
-            this.socket.on('remote:next', this.next.bind(this));
-            this.socket.on('remote:previous', this.previous.bind(this));
-            this.socket.on('remote:enter', this.enter.bind(this));
+            // cache reference because a new reference is created when using .bind
+            this._next = this.next.bind(this);
+            this._previous = this.previous.bind(this);
+            this._enter = this.enter.bind(this);
+
+            this.socket.on('remote:next', this._next);
+            this.socket.on('remote:previous', this._previous);
+            this.socket.on('remote:enter', this._enter);
         },
 
         /**
@@ -81,7 +86,8 @@ define([
         },
 
         enter: function () {
-            $('.selected').find('.item--action').trigger('click');
+            console.log( $('.selected', this.$el).find('.item--action') );
+            $('.selected', this.$el).find('.item--action').trigger('click');
         },
 
         scrollTo: function () {
@@ -112,9 +118,11 @@ define([
         },
 
         remove: function () {
-            this.socket.removeListener('remote:next', this.next);
-            this.socket.removeListener('remote:previous', this.previous);
-            this.socket.removeListener('remote:enter', this.enter);
+            this.socket.removeListener('remote:next', this._next);
+            this.socket.removeListener('remote:previous', this._previous);
+            this.socket.removeListener('remote:enter', this._enter);
+
+            Backbone.View.prototype.remove.apply(this, arguments);
         }
     });
 });

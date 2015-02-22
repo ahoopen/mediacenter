@@ -13,7 +13,8 @@ define([
         template: require('dst!modules/list/template/item.episode.dust'),
 
         events: {
-            'click': 'onSelect'
+            'click': 'onSelect',
+            'click .item--action': 'onPlay'
         },
 
         initialize: function () {
@@ -35,10 +36,15 @@ define([
             event.preventDefault();
 
             this.publish('SHOW_EPISODE_SELECTED', {
-                screen : this.model.get('screen'),
-                summary : this.model.get('summary')
+                screen: this.model.get('screen'),
+                summary: this.model.get('summary')
             });
+
             //Backbone.history.navigate('/show/homeland', {trigger: true});
+        },
+
+        onPlay: function () {
+            console.log('play episode!', this.model.get('ref'));
         }
     });
 });

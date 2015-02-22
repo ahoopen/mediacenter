@@ -35,7 +35,7 @@ define([
         showSeasonList : function(event) {
             event.preventDefault();
 
-            Backbone.history.navigate('/show/' + this.model.get('title') + '/season/1', {trigger: true});
+            Backbone.history.navigate('/show/' + this.model.get('show') + '/season/1', {trigger: true});
         }
     });
 });

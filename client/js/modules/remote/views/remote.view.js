@@ -62,6 +62,12 @@ define([
                 this.gesture.on('swipeUp', function () {
                     self._sendRemoteAction('next');
                 });
+                this.gesture.on('swipeLeft', function () {
+                    self._sendRemoteAction('showMenu');
+                });
+                this.gesture.on('swipeRight', function () {
+                    self._sendRemoteAction('hideMenu');
+                });
                 this.gesture.on('swipeDown', function () {
                     self._sendRemoteAction('previous');
                 });

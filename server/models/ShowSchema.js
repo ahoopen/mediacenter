@@ -347,12 +347,13 @@ ShowSchema.statics.controls = function (showId) {
     var promise = new mongoose.Promise;
 
     this.findOne({ref: showId})
-        .select('episodes')
+        .select('title episodes')
         .populate('episodes')
         .exec(function (err, result) {
             if (err) {
                 promise.error(err);
             }
+            var showTitle = result.title;
 
             result = result.episodes.sort(function (a, b) {
                 if (a.number < b.number) {
@@ -373,6 +374,7 @@ ShowSchema.statics.controls = function (showId) {
                 });
                 list.push( {
                     title : 'All seasons and episodes',
+                    show : showTitle,
                     icon : 'fa fa-bars'
                 });
 
