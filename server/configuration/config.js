@@ -9,7 +9,7 @@ module.exports = {
 
     database: {
         root: rootPath,
-        db: 'mongodb://localhost/mediacenter'
+        db: 'mongodb://127.0.0.1/mediacenter'
     },
 
     server: {
