@@ -15,7 +15,7 @@ requirejs.config({
 
         'backbone': '../bower_components/backbone/backbone',
         'backbone-patterns': '../bower_components/backbone-patterns/dist/backbone-patterns',
-        'underscore': '../bower_components/lodash/lodash.min',
+        'underscore': '../bower_components/lodash/dist/lodash.underscore.min',
         'text': '../bower_components/requirejs-text/text',
 
         /* Dust */
@@ -79,7 +79,7 @@ requirejs.config({
         },
 
         'raspberry-pi-mediacenterjs': {
-            deps: [ 'backbone-patterns', 'es5-shim', 'jquery', 'gestureManager', 'jquery.mCustomScrollbar']
+            deps: ['backbone', 'backbone-patterns', 'es5-shim', 'jquery', 'gestureManager', 'jquery.mCustomScrollbar']
         }
     }
 });
