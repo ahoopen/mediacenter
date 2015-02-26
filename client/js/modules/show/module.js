@@ -8,12 +8,6 @@ define('component-shows', [
 ], function () {
     'use strict';
 
-    console.log('shows overview!!');
-    //var ItemList = require('modules/list/views/list.main.view'),
-    //    list = new ItemList();
-    //
-    //$(document.body).append(list.render().el);
-
     var ShowOverview = require('modules/show/views/show.overview.view'),
         ShowModel = require('modules/show/model/show.model');
 

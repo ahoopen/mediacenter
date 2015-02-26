@@ -1,7 +1,6 @@
 /* globals define, require, $, Backbone */
 
 define([
-    'backbone-patterns',
     'component-shows',
     'component-list',
     'component-remote-control',
@@ -11,10 +10,6 @@ define([
 ], function () {
 
     'use strict';
-
-    //var componentRemoteControl = require('component-remote-control'),
-    //    listComponent = require('component-list');
-
 
     var MainRouter = Backbone.Router.extend({
         routes: {
