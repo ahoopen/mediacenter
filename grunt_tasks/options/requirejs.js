@@ -5,8 +5,8 @@ module.exports = {
             baseUrl: './client/js',
             mainConfigFile: './client/js/config.js',
             name: 'config',
-            //optimize: 'uglify2',
-            optimize: 'none',
+            optimize: 'uglify2',
+            //optimize: 'none',
             useStrict: true,
             skipDirOptimize: false,
             preserveLicenseComments: false,
@@ -15,6 +15,9 @@ module.exports = {
                 'dust',
                 'text'
             ],
+            "paths": {
+                'backbone': "empty:"
+            },
             out: 'target/js/mediacenter.min.js'
         }
     }
