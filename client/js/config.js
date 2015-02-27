@@ -89,7 +89,8 @@ requirejs.config({
     }
 });
 
-require(['raspberry-pi-mediacenterjs', 'gestureManager', 'jquery.mCustomScrollbar'], function () {
+// 'gestureManager', 'jquery.mCustomScrollbar'
+require(['raspberry-pi-mediacenterjs'], function () {
     'use strict';
 
     return {};
