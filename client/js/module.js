@@ -1,6 +1,9 @@
 /* globals define, require, $, io, window */
 
 define('raspberry-pi-mediacenterjs', [
+    'es5-shim',
+    'underscore',
+    'backbone',
     'routes/router',
     'modules/page/views/app.view'
     //'component-shows',

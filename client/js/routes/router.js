@@ -1,6 +1,7 @@
 /* globals define, require, $, Backbone */
 
 define([
+    'backbone',
     'component-shows',
     'component-list',
     'component-remote-control',
