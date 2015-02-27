@@ -78,18 +78,12 @@ requirejs.config({
             exports: '$'
         },
 
-        'promise': {
-            deps: ['es5-shim'],
-            exports: 'Promise'
-        },
-
         'raspberry-pi-mediacenterjs': {
-            deps: ['backbone', 'backbone-patterns', 'es5-shim', 'jquery', 'dust']
+            deps: ['backbone', 'backbone-patterns', 'es5-shim', 'jquery', 'gestureManager', 'jquery.mCustomScrollbar']
         }
     }
 });
 
-// 'gestureManager', 'jquery.mCustomScrollbar'
 require(['raspberry-pi-mediacenterjs'], function () {
     'use strict';
 

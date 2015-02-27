@@ -1,6 +1,6 @@
 /* globals define, $, dispatchEvent */
 
-define('gesture',function () {
+define(function () {
 
     'use strict';
 

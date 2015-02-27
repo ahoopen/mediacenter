@@ -1,7 +1,7 @@
 /* globals define, require, $, Backbone */
 
 define([
-    'backbone',
+    'backbone-patterns',
     'component-shows',
     'component-list',
     'component-remote-control',
@@ -49,6 +49,8 @@ define([
         });
 
         router.on('route:shows', function() {
+            console.log(' show..');
+
             var shows = require('modules/show/views/shows.view'),
                 overview = require('modules/show/model/show.model'),
                 showsList = new shows({

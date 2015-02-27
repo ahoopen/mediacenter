@@ -13,6 +13,7 @@ define( [
         el: 'body',
 
         goto: function (view) {
+            console.log(view, 'app.view');
             var previous = this.currentPage || null;
             var next = view;
 

@@ -1,6 +1,8 @@
 /* globals define, Backbone, $, _ */
 
-define( function () {
+define([
+  'backbone'
+], function () {
     'use strict';
 
     return Backbone.View.extend({
