@@ -15,7 +15,7 @@ requirejs.config({
 
         'backbone': '../bower_components/backbone/backbone',
         'backbone-patterns': '../bower_components/backbone-patterns/dist/backbone-patterns',
-        'underscore': '../bower_components/lodash/dist/lodash.min',
+        'underscore': '../bower_components/lodash/dist/lodash.compat',
         'text': '../bower_components/requirejs-text/text',
 
         /* Dust */
