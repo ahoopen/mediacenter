@@ -1,8 +1,8 @@
 /* globals define, require, $, io, window */
 
 define('raspberry-pi-mediacenterjs', [
-    'routes/router',
-    'modules/page/views/app.view'
+    'routes/router'
+    //'modules/page/views/app.view'
     //'component-shows',
     //'component-list'
 ], function (MainRouter) {
@@ -18,8 +18,6 @@ define('raspberry-pi-mediacenterjs', [
 
     $(document.body).append(main);
 
-    //var remoteCtrl = new remote();
     MainRouter.initialize();
 
-    //$('.remote-control').append( remoteCtrl.el);
 });
