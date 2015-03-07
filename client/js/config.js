@@ -1,3 +1,5 @@
+/* globals requirejs */
+
 requirejs.config({
 
     baseUrl: '/js',
@@ -38,6 +40,10 @@ requirejs.config({
 
         /* */
         'jquery.mCustomScrollbar': '../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min'
+    },
+
+    map: {
+        '*': { 'lodash': 'underscore'}
     },
 
     shim: {
