@@ -1,5 +1,3 @@
-/* globals requirejs, require */
-
 requirejs.config({
 
     baseUrl: '/js',
@@ -79,7 +77,7 @@ requirejs.config({
         },
 
         'raspberry-pi-mediacenterjs': {
-            deps: [ 'es5-shim', 'jquery', 'gestureManager', 'jquery.mCustomScrollbar']
+            deps: [ 'backbone-patterns', 'es5-shim', 'jquery', 'gestureManager', 'jquery.mCustomScrollbar']
         }
     }
 });
