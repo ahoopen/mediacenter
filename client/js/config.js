@@ -79,7 +79,7 @@ requirejs.config({
         },
 
         'raspberry-pi-mediacenterjs': {
-            deps: [ 'backbone-patterns', 'es5-shim', 'jquery', 'gestureManager', 'jquery.mCustomScrollbar']
+            deps: [ 'es5-shim', 'jquery', 'gestureManager', 'jquery.mCustomScrollbar']
         }
     }
 });
