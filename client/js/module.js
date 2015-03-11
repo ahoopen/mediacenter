@@ -2,7 +2,6 @@
 
 define('raspberry-pi-mediacenterjs', [
     'underscore',
-    'backbone',
     'routes/router',
     'modules/page/views/app.view',
     'component-shows',
