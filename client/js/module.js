@@ -7,10 +7,11 @@ define('raspberry-pi-mediacenterjs', [
     'modules/page/views/app.view',
     'component-shows',
     'component-list'
-], function (MainRouter) {
+], function () {
     'use strict';
 
     var app = require('modules/page/views/app.view'),
+        MainRouter = require('routes/router'),
         main = new app();
 
     // set socket instance global
